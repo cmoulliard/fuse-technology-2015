@@ -2,7 +2,8 @@
 :project_dir: /Users/chmoulli/MyProjects/MyConferences/fuse-days-2014
 :resourcesdir: /Users/chmoulli/MyProjects/MyConferences/fuse-days-2014/slideshow/snippet/src/main/resources
 :sourcesdir: /Users/chmoulli/MyProjects/MyConferences/fuse-days-2014/slideshow/snippet/src/main/java/
-
+:imagesdir: images/
+  
 :author: Charles Moulliard (@cmoulliard)
 :blog: http://cmoulliard.github.io
 :title-author: {title} {author}

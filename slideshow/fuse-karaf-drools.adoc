@@ -3,6 +3,7 @@
 :backend: revealjs
 :blog: http://cmoulliard.github.io
 :data-uri!:
+:imagesdir: images/
 //:footer_copyright: Powered by http://asciidoctor.org[Asciidoctor], RevealJS and Hyla
 //:footer_copyright: Powered by Asciidoctor, Hyla & RevealJS
 :footer_copyright: Copyright ©2014 Red Hat, Inc.
