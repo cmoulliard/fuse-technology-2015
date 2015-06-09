@@ -1,0 +1,163 @@
+
+DEMO - Fabric8 v1 - Camel CXF REST 
+
+# Start JBoss Fuse 6.2
+# Create Fabric Ensemble (wifi connection is required)
+
+    fabric:create -m 127.0.0.1 -r localip
+
+# Do some clean up
+
+    rm -rf ~/Temp/fabric-camel-rest
+    rm -rf ~/Temp/workspace-tug
+    cp -R /Users/chmoulli/MyProjects/use-cases/fabric-camel-rest ~/Temp/fabric-camel-rest
+
+# Launch JBDS 8
+# Create workspace : /Users/chmoulli/Temp/workspace-tug
+# Import Project using Maven : ~/Temp/fabric-camel-rest
+# Review content : Blueprint.xml file
+# Launch the project locally using `Run As CamelContext`
+# Use the JMX Explorer to display the content of the CamelRoute
+# Use curl/http requests
+
+# To get customer
+
+    http GET http://localhost:8080/cxf/rest/customerservice/customers/123
+    http GET http://localhost:8080/cxf/rest/customerservice/customers/124
+
+# To Post
+
+    echo '{"Customer":{"name":"TUG"}}' | http POST http://localhost:8080/cxf/rest/customerservice/customers
+
+# To Update
+
+    echo '{"Customer":{"id":124,"name":"TUG2"}}' | http PUT http://localhost:8080/cxf/rest/customerservice/customers
+
+# To delete
+
+    http DELETE http://localhost:8080/cxf/rest/customerservice/customers/124
+
+# Review content of the pom.xml file to explain the Fabric properties
+# If not yet there add a mvn goal ("Fabric8-deploy")
+# Launch it t odeploy the profile on JBoss Fuse Fabric
+# Review the content of the profile
+# Create a container
+# Check that we have a contract at this address : http://dabou.local:8182/cxf/rest?_wadl
+# Show the Camel route
+# Issue some REST requests
+
+```
+http GET http://localhost:8182/cxf/rest/customerservice/customers/123
+http GET http://localhost:8182/cxf/rest/customerservice/customers/124
+echo '{"Customer":{"name":"TUG"}}' | http POST http://localhost:8182/cxf/rest/customerservice/customers
+echo '{"Customer":{"id":124,"name":"TUG2"}}' | http PUT http://localhost:8182/cxf/rest/customerservice/customers
+http DELETE http://localhost:8182/cxf/rest/customerservice/customers/124
+```
+
+# Stop the container
+
+    fabric:container-stop demo-rest
+
+
+DEMO - Fabric8 v2 - Camel Servlet WAR or WAR REST
+
+# Prerequisite : maven 3.3.3
+
+    source ~/.bash_profile
+    jvm 1.7
+
+# Open a Terminal and move to the directory of Fabric8 project (use master branch)
+# Start Vagrant
+
+    vagrant up
+
+# Define for the HOST = macosx the docker daemon which runs within the Vagrant VM Box
+
+    export DOCKER_HOST=tcp://vagrant.local:2375
+    export KUBERNETES_NAMESPACE=default
+    export KUBERNETES_MASTER=https://172.28.128.4:8443
+    export KUBERNETES_DOMAIN=vagrant.local
+    export KUBERNETES_TRUST_CERT="true"
+
+# Authentify the OSC user with the openshift platform
+
+    osc project default
+    osc login -u admin -p admin https://172.28.128.4:8443  
+
+# Add the name of the application to the hosts file 
+
+    172.28.128.4    fabric8.local gogs.local vagrant.local docker-registry.vagrant.local fabric8-master.vagrant.local fabric8.vagrant.local gogs.vagrant.local gogs.fabric8.vagrant.local gogs-http.vagrant.local jenkins.vagrant.local kibana.vagrant.local nexus.vagrant.local router.vagrant.local gerrit-ssh.vagrant.local gerrit-http.vagrant.local gerrit.vagrant.local sonarqube.vagrant.local letschat.vagrant.local orion.vagrant.local taiga.vagrant.local quickstart-camelservlet.vagrant.local quickstart-rest.vagrant.local
+
+# Deploy the Fabric8 Base APP
+
+    osc process -v DOMAIN='vagrant.local' -f http://central.maven.org/maven2/io/fabric8/apps/base/2.1.11/base-2.1.11-kubernetes.json | osc create -f -   
+
+# Add the route for Fabric8
+
+    mvn fabric8:create-routes  
+
+# Show the project `camel-servlet` within the quickstart project
+# Analyze the properties of the pom.xml file
+
+# Checkout the master or tag 2.1.6 of the quickstart app 'camel servlet war' & compile/build/deploy the kube App & docker image
+
+#  mvn install docker:build fabric8:json fabric8:apply 
+
+# Run command fabric8:json & explain kubernetes.json 
+
+    fabric8:json
+
+# Explain docker:build, docker:push
+
+# Create the image --> mvn docker:build    
+
+# Deploy the Camel Servlet WAR example
+
+    mvn fabric8:apply
+
+#  The application Camel Web Servlet is accessible : http://quickstart-camelservlet.vagrant.local/
+
+**************************************************
+
+# Delete pods, services & replica
+
+    osc get pods -l provider=fabric8
+    osc get rc -l provider=fabric8
+    osc get svc -l provider=fabric8
+    osc get oauthclients | grep fabric8
+    
+    osc delete pods -l provider=fabric8
+    osc delete rc -l provider=fabric8
+    osc delete svc -l provider=fabric8
+    osc delete oauthclients fabric8
+
+**************************************************
+
+# Troubleshoot
+
+If it doesn't try to start up - or you see it keep retrying from the openshift logs - then there could be an issue with your docker image or code. So its a good idea to try just run it yourself on the console.
+
+  docker run -it imageName
+
+# Env vars
+
+Ideally passing in the environment variables your image needs to discover other services. There's a handy command to figure out the env vars for you:
+http://fabric8.io/guide/mavenFabric8CreateEnv.html
+
+though ideally this command would also output the CLI you need to run directly in docker too...
+https://github.com/fabric8io/fabric8/issues/4056
+
+# Delete PODS
+
+Now for the cool part. If you're really lucky everything works first time and you're done; but more often you need to work on the code some more and compile again. Rather than doing the whole regeneration of the JSON and reapplying (which is fairly fast but can take a couple of seconds) and doing a docker push/pull (which can take many seconds) you can just do:
+
+    mvn install docker:build fabric8:delete-pods
+
+For more see http://fabric8.io/guide/mavenFabric8DeletePods.html
+
+What this does is builds the docker image in the docker daemon and deletes all the pods which uses the same image as your current maven project; this immediately causes the kubernetes Replication Controller to recreate any of the pods you deleted. Basically this causes an immediate rolling upgrade to the new image! Its a pretty nice, quick way of working.
+
+Longer term I think we can get even cooler ways to update more in real time (for those who've used `dev:watch *` on Karaf I think we can do something kinda similar; so a mvn install may one day be enough to trigger a `mvn docker:build-watch` to do an incremental build; or to update the contents of a mapped volume etc)
+https://github.com/rhuss/docker-maven-plugin/issues/187
+
+I hope that helps! We need to refactor the above into the docs on the site ASAP really!
