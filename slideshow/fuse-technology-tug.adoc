@@ -28,6 +28,18 @@
 --
 
 // ************** Projects timeline ********
+== Agenda
+
+* Fuse Technology Presentation
+* Integration Platform 
+* Core technology : Apache Camel
+* Container : Apache Karaf
+* Management & Provisioning : Fabric8 v1
+* Demo
+* Extend the containers : Fabric8 v2
+* Demo
+
+// ************** Projects timeline ********
 == Integration OS projects
 
 * Long *History* behind *Fuse*
