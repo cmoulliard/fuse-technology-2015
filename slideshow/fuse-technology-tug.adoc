@@ -423,11 +423,6 @@ image:fuse/hawtio-3.png[]
 image:fuse/hawtio-4.png[width="65%",height="65%"]
 image:fuse/hawtio-5.png[width="65%",height="65%"]
 
-
-// ************ Hawtio *************
-
-== Manage your brokers
-
 // ************ Hawtio *************
 
 == JBoss Fuse 6.2 in action
