@@ -474,8 +474,8 @@ image:fabric/docker-filesystems-multilayer.png[width="60%,height="60%"]
 == Kubernetes
 
 * Runtime & *Operational management* of containers
-* ApiServer, Scheduler, Controller & State Storage
-* *Agent - kubelet* - manage containers on host
+* ApiServer (event, status), *Scheduler*, *Controller* & State Storage
+* *Agent - Kubelet* - manage containers on host
 * Containers {icon-arrow-right} *pods* (= shared docker containers)
 
 image:fabric/kubernetes.png[]
@@ -486,7 +486,8 @@ image:fabric/kubernetes.png[]
 
 image:fabric/openshift_logo.png[width="40%,height="40%"]
 
-* Lifecycle of applications : build, deploy, manage & promote
+* *Designed* around Kubernetes, Docker & Fabric8
+* Provide additional features : build (STI), deploy, manage & promote
 
 // ************** fabric & hawtio ************
 == Fabric8 v2 in action
@@ -494,8 +495,8 @@ image:fabric/openshift_logo.png[width="40%,height="40%"]
 [.newline]
 * *DEMO* :
 ** Move to Fabric8 v2
-** Start Openshiftv3 & Docker
-** Install a Kube Application (Camel Servlet WAR)
+** Start VM Machine running Openshiftv3 & Docker V
+** Install a Camel Servlet WAR project as a Kube Application
 
 // *********************************
 == Questions
