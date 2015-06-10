@@ -429,7 +429,9 @@ image:fuse/hawtio-5.png[width="65%",height="65%"]
 
 [.newline]
 * *DEMO* :
-** Use JBDS & start a Camel CXF REST Project
+** Use JBDS & Integration Stack
+** Look to a Fuse Integration Project
+** Start a Camel CXF REST Project
 ** Launch Fabric8 V1 & deploy the project
 ** Review the profile & create a new container
 
