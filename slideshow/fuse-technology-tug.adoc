@@ -418,7 +418,7 @@ image:fuse/hawtio-5.png[width="65%",height="65%"]
 
 // ************ Hawtio *************
 
-== JBoss Fuse 6.2x in action
+== JBoss Fuse 6.2 in action
 
 [.newline]
 * *DEMO* :
@@ -511,6 +511,12 @@ image:fabric/openshift_logo.png[width="40%,height="40%"]
 
 * *Designed* around Kubernetes, Docker & Fabric8
 * Provide additional features : build (STI), deploy, manage & promote
+
+// ************** fabric v2 ************
+
+== OS3 Architecture
+
+image:fabric/ose-v3.png[]
 
 // ************** fabric & hawtio ************
 == Fabric8 v2 in action
