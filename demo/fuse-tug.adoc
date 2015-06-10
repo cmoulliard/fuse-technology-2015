@@ -90,6 +90,10 @@
 ```
     source ~/.bash_profile
     jvm 1.7
+
+    Add to the local macosx machine the following route to forward all tge packets to the IP Address of the VM running into the VirtualBox
+    sudo route -n delete 172.0.0.0/8
+    sudo route -n add 172.0.0.0/8  172.28.128.4
 ```
 * Open a Terminal and move to the directory of Fabric8 project (use master branch)
 * Start Vagrant
