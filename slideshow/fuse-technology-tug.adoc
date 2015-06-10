@@ -34,6 +34,11 @@
 
 image::fuse/HistoryOfFuse.png[]
 
+// ************** Projects timeline ********
+== Integration EveryWhere
+
+image::fuse/fuse_everywhere.png[]
+
 // ************** High level presentation ************
 
 == JBoss Fuse Products
@@ -76,17 +81,6 @@ image::camel/camel-box-small.png[width="100%",float="right"]
 image::eip/book.jpg[width="45%",float="right"]
 
 // ************** Camel ************
-//[data-background="white"]
-== Enterprise Patterns
-
-* http://camel.apache.org/enterprise-integration-patterns.html[> 50 patterns] implemented
-* and more : Loadbalancer, Throttler, Delayer, ...
-
-image::eip/patterns.png[width="100%",float="left"]
-
-image::eip/patterns-3.jpg[width="120%",float="left"]
-
-// ************** Camel ************
 == Route, processor
 
 * Camel project {icon-arrow-right} Collection of routes
@@ -94,14 +88,6 @@ image::eip/patterns-3.jpg[width="120%",float="left"]
 * Producing or consuming Messages/Exchanges
 
 image:camel/pipeline.png[]
-
-// ************** Camel ************
-== Interceptor
-
-* To trace, log, capture business events
-
-[.newline]
-image:camel/pipeline2.png[]
 
 // ************** Camel ************
 == Container
@@ -130,7 +116,18 @@ image:camel/camel-features3.png[]
 
 [source, java]
 ----
-include::{sourcesdir}/my/cool/demo//DataFormat.java[]
+package my.cool.demo;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import org.apache.camel.Exchange;
+
+public interface DataFormat {
+
+    void marshal(Exchange exchange, Object graph, OutputStream stream) throws Exception;
+
+    Object unmarshal(Exchange exchange, InputStream stream) throws Exception;
+}
 ----
 
 * **Marshalling** : Object {icon-arrow-right} XML (JAXB)
@@ -153,31 +150,68 @@ image::camel/inout.png[width="75%"]
 
 [source,java]
 ----
-include::{sourcesdir}/my/cool/demo/ExampleRouteBuilder.java[]
+package my.cool.demo;
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class ExampleRouteBuilder extends RouteBuilder {
+    @Override
+    public void configure() throws Exception {
+
+        from("amq:queue:quotes")
+           .filter().xpath("/quote/product/ = 'widget")
+                .bean("QuotesService", "widget")
+           .filter().xpath("/quote/product/ = 'gadget")
+                .bean("QuotesService","gadget");
+    }
+}
+
 ----
 
 // ************** Camel ************
-== XML, XML
+== XML DSL
 
 * Alternative : Spring, Blueprint DSL
 
 [source,xml]
 ----
-include::{resourcesdir}/META-INF/org/devnation/camel/example.xml[]
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+    <bean id="quotesService" class="my.cool.demo.camel.QuotesService"/>"
+
+    <camelContext  xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <from uri="amq:queue:quotes"/>
+            <filter>
+                <xpath>"/quote/product/ = 'widget"</xpath>
+            </filter>
+                <bean id="quotesService" method="widget"/>
+            <filter>
+                <xpath>"/quote/product/ = 'gadget"</xpath>
+            </filter>
+            <bean id="quotesService" method="gadget"/>
+        </route>
+    </camelContext>
+</beans>
 ----
 
 // ************** Camel ************
 == Facts
 
-* *Small* bus / alternative to bigger bus like *JBI*, SCA, NMR
-* Support *object* : XML, File, Stream, Bytes
+* *In-Memory* bus
+* Support *Object* : XML, File, Stream, Bytes
 * *Predicate* & *Expression* language (xslt, xpath, ...)
 * *Sync*/*Async* exchanges
-* Threads Management,
+* Threads Management
 * *Tx* Architecture
-* *Error* &  *exception* handling
+* *Error* & *Exception* handling
 * Policy driven
-* Container *agnostic*
+* Container *Agnostic*
 
 // ************** Karaf ************
 
@@ -199,7 +233,8 @@ image::integration/ship-containers.png[]
 * Provide *provisioning* solution features
 * *Hot* deployment
 * Configure & manage instances
-* Security integration - *JAAS*
+* *JAAS* Security layer
+* Role Base Access Control (RBAC)
 
 // ************** Karaf ************
 
@@ -220,18 +255,9 @@ image:karaf/karaf1.png[]
 
 image:karaf/karaf2.png[]
 
-// ************** Karaf ************
-
-== Integration container
-
-* New routes can be *hot deployed*
-* Like also "Beans/POJO, Web Services, ..."
-
-image::karaf/karaf3.png[width="70%",height="70%"]
-
 // ************** integration everywhere ************
 
-== Deployment & config
+== (Cloud) Deployment
 
 image:karaf/karaf4.png[]
 
@@ -247,11 +273,11 @@ image::fabric/fabric-diagram.png[]
 == Features
 
 - *Manage* container creation (locally, remotely, cloud, openshift, docker, ...)
-- *Visualise* what is running to understand your platform
-- *Monitor* whats running and easily scaling up or down specific profiles
-- Make configuration, composition or *version changes* in an all-in-one approach or via rolling upgrades
+- *Visualise* what is running into JVM to understand your platform
+- *Monitor* whats running and easily scaling up or down
+- Support upgrades via *Version changes* and Rollback
 - *Virtualize* services (endpoints), processes
-- Search and *storage* engine (insight) for logs, metrics
+- Search (Kibana) and *storage* engine (insight) for logs, metrics (ElasticSearch)
 
 // ************** Fabric ************
 
@@ -274,7 +300,7 @@ image:fabric/fabric-diagram1.png[]
 
 // ************** Fabric ************
 
-== Coordinating system : Zoo
+== Coordinating System : Zoo
 
 * *Rely on* {icon-arrow-right}
 Zookeeper server (ensemble of 1,3, 5 or servers) {icon-cloud}
@@ -385,6 +411,21 @@ image:fuse/hawtio-3.png[]
 image:fuse/hawtio-4.png[width="65%",height="65%"]
 image:fuse/hawtio-5.png[width="65%",height="65%"]
 
+
+// ************ Hawtio *************
+
+== Manage your brokers
+
+// ************ Hawtio *************
+
+== JBoss Fuse 6.2x in action
+
+[.newline]
+* *DEMO* :
+** Use JBDS & start a Camel CXF REST Project
+** Launch Fabric8 V1 & deploy the project
+** Review the profile & create a new container
+
 // ************** integration ************
 
 == Integration complexity
@@ -412,7 +453,6 @@ image::karaf/karaf5.png[]
 image:fabric/docker-logo.png[]
 
 * *Container runtime* & *image* distribution
-* Roll your own solutions for everything
 
 // ************** fabric v2 ************
 
@@ -422,12 +462,21 @@ image:fabric/docker_vm_diagram.jpg[]
 
 // ************** fabric v2 ************
 
+== Docker
+
+image:fabric/docker-filesystems-multilayer.png[width="60%,height="60%"]
+
+* *Launch Process* (cmd/entrypoint)
+* Top of a Union FS mounted with immutable images
+
+// ************** fabric v2 ************
+
 == Kubernetes
 
-* Runtime & *operational management* of containers
+* Runtime & *Operational management* of containers
 * ApiServer, Scheduler, Controller & State Storage
 * *Agent - kubelet* - manage containers on host
-* Containers managed as *pods* (= shared docker containers)
+* Containers {icon-arrow-right} *pods* (= shared docker containers)
 
 image:fabric/kubernetes.png[]
 
@@ -439,16 +488,14 @@ image:fabric/openshift_logo.png[width="40%,height="40%"]
 
 * Lifecycle of applications : build, deploy, manage & promote
 
-
 // ************** fabric & hawtio ************
-== JBoss Fuse in action
+== Fabric8 v2 in action
 
 [.newline]
 * *DEMO* :
-** Use JBDS & start a Camel CXF REST Project
-** Launch Fabric8 V1 & deploy the project
-** Review the profile & create a new container
-** Move to Fabric8 v2 & install a Kube Application (Camel Servlet WAR)
+** Move to Fabric8 v2
+** Start Openshiftv3 & Docker
+** Install a Kube Application (Camel Servlet WAR)
 
 // *********************************
 == Questions

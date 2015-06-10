@@ -1,0 +1,59 @@
+source: demo
+destination: demo/generated # or . or ~/Hyla or generated_content
+backend: html5
+rendering: adoc2html           # Render asciidoc, asciidoctor files to HTML using backend HTML5
+
+#
+# Styles
+# Supported :  liberation, asciidoctor, colony, foundation, foundation-lime, foundation-potion, github, golo, iconic, maker, readthedocs, riak, rocket-panda, rubygems
+#
+style: asciidoctor
+
+mode: 'development' # Default value = production. Available : 'production', 'development"
+tracer: 'false' #Default value is false. Can be true or false
+level: 'INFO' # Values available : DEBUG, INFO, WARN, ERROR, FATAL. Default for production : 'WARN' and development 'DEBUG'
+dirname: /Users/chmoulli/log # Directory where the log files should be saved. If not specified hyla will create a directory under your home directory
+logname: hyla.log # Name of the log file
+
+attributes:
+  linkcss!: true
+  data-uri: true
+  allow-uri-read:
+  idprefix:
+  linkattrs:
+  linkcss:
+  # scripts: jquery-1.11.2.min.js,gpe.min.js
+  # scriptsdir: revealjs-redhat/lib/js
+  stylesdir: /Users/chmoulli/.rbenv/versions/1.9.3-p484/lib/ruby/gems/1.9.1/gems/hyla-1.0.8.pre.1/lib/resources/assets/styles
+
+  # Code source highlight
+  source-highlighter: highlightjs # prettify, pygments, coderay, highlightjs
+  highlightjs-theme: sunburst # highlightjs-theme: solarized_dark , github, foundation, zenburn, dark, solarized_dark, solarized_light, foundation, zenburn, docco, atelier-heath.light, tomorrow-night-blue, tomorrow-night-eighties
+
+  # Font Icons - http://fortawesome.github.io/Font-Awesome/icons/
+  icon-arrow-left: <i class="fa fa-arrow-left"></i>
+  icon-arrow-right: <i class="fa fa-arrow-right"></i>
+  icon-plus: <i class="fa fa-plus"></i>
+  icon-exclamation-mark: <i class="fa fa-exclamation"></i>
+  icon-exclamation-triangle: <i class="fa fa-triangle fa-4x"></i>
+  icon-question-mark: <i class="fa fa-question"></i>
+  icon-cloud: <i class="fa fa-cloud"></i>
+  icon-smile-o: <i class="fa fa-smile-o"></i>
+  icon-ambulance: <i class="fa fa-ambulance"></i>
+  icon-cogs: <i class="fa fa-cogs"></i>
+  icon-wrench: <i class="fa fa-wrench"></i>
+  icon-co-spin: <i class="fa fa-cog fa-spin"></i>
+  icon-frown-o: <i class="fa fa-frown-o"></i>
+  icon-angle-double-right: <i class="fa fa-angle-double-right"></i>
+  space: '&nbsp;'
+
+  icons: font
+
+  # Use Remote resources of Font Awesome Icons (css)
+  # iconfont-remote: true # Uncomment this line
+  # iconfont-cdn: http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css
+
+  # Use Local resource of Font-Awesome
+  # iconfont-remote: # Comment this line
+  iconfont-name: font-awesome-4.3.0
+# 
