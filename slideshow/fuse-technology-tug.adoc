@@ -438,13 +438,35 @@ image::karaf/karaf5.png[]
 
 == Fabric8 v2
 
+[.newline]
+* Extend GOALS of FabricV1
+
+[.newline]
+* Provision *Other Java Containers* : JBoss EAP, Tomcat, ...
+
+[.newline]
+* Rely on a *New API* & *Architecture Design*
+
+[.newline]
 * Decouple Devs & Ops
-* Support *Continuous Delivery* strategy
-* Provision *different containers*
-* New API & Architecture Design
-* *More* Maven plugins
-** docker:build, docker:push
-** fabric8:json, fabric8:publish, fabric8:create-routes
+
+// ************** fabric v2 ************
+
+== Support Continuous Delivery Strategy
+
+image::fabric/cd_process_diagram.png[]
+
+// ************** fabric v2 ************
+
+== More Maven plugins
+
+* docker:build, docker:push
+
+[.newline]
+* fabric8:json, fabric8:create-env, fabric8:publish
+
+[.newline]
+* fabric8:create-routes, fabric8:delete-pods
 
 // ************** fabric v2 ************
 
@@ -468,6 +490,7 @@ image:fabric/docker-filesystems-multilayer.png[width="60%,height="60%"]
 
 * *Launch Process* (cmd/entrypoint)
 * Top of a Union FS mounted with immutable images
+* Benefits: *portability*, *reusability*, versioning, application-centric
 
 // ************** fabric v2 ************
 
