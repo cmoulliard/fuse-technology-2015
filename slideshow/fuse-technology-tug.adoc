@@ -524,7 +524,7 @@ image:fabric/ose-v3.png[]
 [.newline]
 * *DEMO* :
 ** Move to Fabric8 v2
-** Start VM Machine running Openshiftv3 & Docker V
+** Start VM Machine running Openshiftv3 & Docker
 ** Install a Camel Servlet WAR project as a Kube Application
 
 // *********************************
