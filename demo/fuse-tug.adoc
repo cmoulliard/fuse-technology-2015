@@ -165,6 +165,13 @@
     osc delete oauthclients fabric8
 ```
 
+* Delete gerrit containers & image
+
+```
+    docker rm $(docker ps -a | grep gerrit)
+    docker rmi $(docker images | grep gerrit)
+```
+
 * Delete PODS using Fabric8 plugin
 
 ```
