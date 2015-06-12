@@ -86,7 +86,7 @@
 
 == DEMO - Fabric8 v2 - Camel Servlet WAR or WAR REST
 
-* Prerequisite : maven 3.3.3
+* Prerequisite : maven 3.3.3, Java JDK 1.7
 ```
     source ~/.bash_profile
     jvm 1.7
@@ -96,8 +96,11 @@
 ```
     vagrant up
 ```
-* Define for the HOST macosx the docker daemon which runs within the Vagrant VM Box
+* Define for the HOST macosx the docker daemon which runs within the Vagrant VM Box and kubernetes env vars
 ```
+    unset DOCKER_CERT_PATH
+    unset DOCKER_TLS_VERIFY
+    export DOCKER_HOST="tcp://vagrant.local:2375"
     export DOCKER_HOST=tcp://vagrant.local:2375
     export KUBERNETES_NAMESPACE=default
     export KUBERNETES_MASTER=https://172.28.128.4:8443
