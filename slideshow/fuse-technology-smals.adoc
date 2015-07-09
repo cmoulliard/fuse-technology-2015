@@ -57,7 +57,7 @@ Email: cmoulliard@redhat.com |
 [#fuse-history]
 == Long *History* behind *Fuse*
 
-[#block,width="800px",left="0px",top="0px"]
+[#block,width="950px",left="0px",top="0px"]
 image::fuse-history.png[]
 
 // ************** Technology ********
@@ -381,8 +381,7 @@ image::fuse/fabric-5.png[width="80%",height="80%"]
 == http://hawt.io[Hawt.io] image:hawtio/hawtio_logo.svg[width="15%"]
 
 * *OpenSource* project - Apache License
-* Birthdate : Nov 18, 2012
-* Pluggable & **modular** **web console** for managing Java **MBeans**
+* *Pluggable* & **modular** **web console** for managing Java **MBeans**
 
 [#block,width="700px",left="200px",top="200px"]
 image::hawtio/hawtio-project.png[]
@@ -399,12 +398,7 @@ a|* Command line tools {icon-arrow-right} jmx4perl, j4psh
 |image:hawtio/jolokia.png[float="right",width="65%"]
 |===
 
-//[source,html]
-//----
-//http://localhost:9090/hawtio/jolokia/exec/org.apache.camel:context=camel-1,name=%22route1%22,type=routes/dumpStatsAsXml%28boolean%29/true
-//----
-
-image:hawtio/rest-api-jolokia-2.png[]
+image:hawtio/rest-api-jolokia-2.png[width="90%"]
 
 // ************ Hawtio *************
 [#jolokia-architecture]
@@ -484,8 +478,13 @@ image::jboss-amq-6.2.png[]
 == Future - Fuse 7
 
 [.newline]
+* Fabric8 - V2
+
+* More integrated with Openshift v3, Kubernetes & Docker
+
 * Service Management & Governance : ApiMan
-* OAuth2 Server, IDM : KeyClok
+
+* OAuth2 Server, IDM : KeyCloak
 
 // ************ Hawtio *************
 [#jboss-fuse-demo]
@@ -493,6 +492,10 @@ image::jboss-amq-6.2.png[]
 
 [.newline]
 * *DEMO*
+* REST Camel service - standalone
+* Deploy on Karaf
+* Expose REST Service using Fabric
+* Secure endpoint using ApiMan & Keycloak
 
 // *********************************
 [#questions]
