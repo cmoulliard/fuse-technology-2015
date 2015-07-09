@@ -1,6 +1,6 @@
 source: slideshow
 destination: slideshow/generated # or . or ~/Hyla or generated_content
-backend: revealjs
+backend: revealjs-redhat
 rendering: adoc2html           # Render asciidoc, asciidoctor files to HTML using backend HTML5
 
 mode: 'development' # Default value = production. Available : 'production', 'development"
@@ -38,7 +38,7 @@ attributes:
   icon-co-spin: <i class="fa fa-cog fa-spin"></i>
   icon-frown-o: <i class="fa fa-frown-o"></i>
   icon-angle-double-right: <i class="fa fa-angle-double-right"></i>
-  space: '&nbsp;'
+  blank-space: '&nbsp;'
 
   icons: font
 
@@ -50,12 +50,14 @@ attributes:
   # iconfont-remote: # Comment this line
   iconfont-name: font-awesome-4.3.0
 
-  revealjsdir: "revealjs"
-  revealjs_theme: conference-redhat # GPE Reveal css theme
+  revealjsdir: "revealjs-redhat"
+  revealjs_theme: conference # Revealjs RedHat css theme
   revealjs_transition: none # default/cube/page/concave/zoom/linear/fade/none
   revealjs_display_slidenumber: true  # Comment/Uncomment the line but don't replace true by false
   revealjs_history: true # Comment/Uncomment the line but don't replace true by false
-  # revealjs_scrollbar: true # Support browser's scrollbar
+  revealjs_cover_image: /Users/chmoulli/.rbenv/versions/1.9.3-p484/lib/ruby/gems/1.9.1/gems/hyla-1.0.8.pre.1/lib/resources/assets/revealjs-redhat/image/1156515-Logo_RH_RGB_Reverse.png
+
+  revealjs_scrollbar: true # Support browser's scrollbar
   revealjs_footer_copyright: Copyright ©2015 Red Hat, Inc.
   revealjs_slideshow: false # Attribute that we use to include/remove title cover for revealjs
-# 
+#
