@@ -488,14 +488,14 @@ image::jboss-amq-6.2.png[]
 
 // ************ Hawtio *************
 [#jboss-fuse-demo]
-== JBoss Fuse 6.2 in action
+== JBoss Fuse in action
 
-[.newline]
-* *DEMO*
-* REST Camel service - standalone
-* Deploy on Karaf
-* Expose REST Service using Fabric
-* Secure endpoint using ApiMan & Keycloak
+[#block,width="200px",left="0px",top="200px"]
+**DEMO**
+
+[#block,width="200px",left="0px",top="400px"]
+REST Camel service, Deploy on Karaf, Expose REST Service using Fabric
+Secure endpoint using ApiMan & Keycloak
 
 // *********************************
 [#questions]
@@ -504,8 +504,8 @@ image::jboss-amq-6.2.png[]
 [.noredheader,cols="45,.<55"]
 |===
 
-.2+|image:questions.png[]
-a|* Twitter : @cmoulliard
+.2+|image:questions.png[width="98%"]
+a|* Twitter : https://twiter.com/cmoulliard[@cmoulliard]
 |===
 
 * More info {icon-arrow-right}
