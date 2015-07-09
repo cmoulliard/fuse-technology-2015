@@ -490,12 +490,11 @@ image::jboss-amq-6.2.png[]
 [#jboss-fuse-demo]
 == JBoss Fuse in action
 
-[#block,width="200px",left="0px",top="200px"]
-**DEMO**
-
-[#block,width="200px",left="0px",top="400px"]
-REST Camel service, Deploy on Karaf, Expose REST Service using Fabric
-Secure endpoint using ApiMan & Keycloak
+* *DEMO*
+** REST Camel service (local)
+** Deploy on Karaf
+** Create container & expose REST Service using Fabric
+** Define Policy for the endpoint & authorize using Oauth2
 
 // *********************************
 [#questions]
