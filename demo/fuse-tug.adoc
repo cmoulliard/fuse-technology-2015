@@ -137,7 +137,7 @@
 
 * Run command fabric8:json & explain kubernetes.json 
 ```
-    fabric8:json
+    mvn clean fabric8:json compile 
 ```
 * Explain docker:build, docker:push
 
@@ -145,11 +145,17 @@
 
 * Deploy the Camel Servlet WAR example
 ```
-    mvn fabric8:apply
+    mvn fabric8:apply -Dfabric8.recreate=true -Dfabric8.domain=vagrant.local
 ```
 *  The application Camel Web Servlet is accessible : http://quickstart-camelservlet.vagrant.local/
 
 == To replay
+
+* To access a docker container
+
+```
+    docker exec -it $(docker ps | grep 'fabric8/gerrit' | cut -f1 -d" ") bash
+```
 
 * Delete pods, services & replica
 
@@ -165,7 +171,7 @@
     osc delete oauthclients fabric8
 ```
 
-* Delete gerrit containers & image
+* Delete containers & image
 
 ```
     docker rm $(docker ps -a | grep gerrit)
@@ -179,3 +185,5 @@
 ```
 
 For more see http://fabric8.io/guide/mavenFabric8DeletePods.html
+
+
