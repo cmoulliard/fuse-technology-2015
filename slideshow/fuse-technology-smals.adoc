@@ -58,7 +58,7 @@ Email: cmoulliard@redhat.com |
 == Long *History* behind *Fuse*
 
 [#block,width="800px",left="0px",top="0px"]
-image::fuse/HistoryOfFuse.png[]
+image::fuse-history.png[]
 
 // ************** Technology ********
 [#technology]
