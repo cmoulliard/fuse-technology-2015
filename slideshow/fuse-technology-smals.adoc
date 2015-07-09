@@ -62,38 +62,13 @@ image::fuse/HistoryOfFuse.png[]
 
 // ************** Technology ********
 [#technology]
-== Fuse Bricks
+== Fuse *Integration* Technology
 
 [#block,width="800px",left="0px",top="0px"]
-image::fuse/HistoryOfFuse.png[]
-
-// ************** Projects timeline ********
-[#integration-everywhere]
-== Integration EveryWhere
-
-[#block,width="800px",left="0px",top="0px"]
-image::fuse/fuse_everywhere.png[]
-
-// ************** High level presentation ************
-[#product-fuse]
-== JBoss Fuse
-
-//image::fuse/jboss-fuse.png[width="80%",height="80%"]
-image::jboss-fuse-6.2.png[]
-
-* *Integration & Mediation* Platform
-
-// ************** High level presentation ************
-[#product-amq]
-== JBoss A-MQ
-
-//image::fuse/jboss-fuse.png[width="80%",height="80%"]
-image::jboss-amq-6.2.png[]
-
-* *Messaging* Broker Platform (JMS, AMQP, MQTT, STOMP, Push)
-* and *iPaas* (Openshift cartridges - v2)
+image::fuse-technology.png[]
 
 // ************ Technology overview ***********
+[#integration-platform]
 == Integration platform
 
 [.noredheader,cols="50,50"]
@@ -110,6 +85,7 @@ a|
 |===
 
 // ************** Camel ************
+[#apache-camel]
 == Apache Camel
 
 image::camel/camel-box-small.png[width="100%",float="right"]
@@ -125,6 +101,7 @@ image::camel/camel-box-small.png[width="100%",float="right"]
 image::eip/book.jpg[width="45%",float="right"]
 
 // ************** Camel ************
+[#camel-route]
 == Route, processor
 
 * Camel project {icon-arrow-right} Collection of routes
@@ -134,6 +111,16 @@ image::eip/book.jpg[width="45%",float="right"]
 image:camel/pipeline.png[]
 
 // ************** Camel ************
+[#camel-interceptor]
+== Interceptor
+
+* To trace, log, capture business events
+
+[.newline]
+image:camel/pipeline2.png[]
+
+// ************** Camel ************
+[#camel-context]
 == Container
 
 [.noredheader,cols="45,65"]
@@ -149,11 +136,35 @@ a| * Routes/*Endpoints* registered {icon-arrow-right} CamelContext
 |===
 
 // ************** Camel ************
+[#camel-communication-not-allowed]
+== Communication
+
+[.noredheader,cols="45,65"]
+|===
+| .2+|image:camel/camel-features2.png[]
+a| * Cross communication not allowed between context |
+|===
+
+// ************** Camel ************
+[#camel-communication-allowed]
 == Communication
 
 image:camel/camel-features3.png[]
 
 // ************** Camel ************
+[#camel-ff]
+== Fire / Forget pattern
+
+image::camel/inonly.png[width="65%"]
+
+// ************** Camel ************
+[#camel-request-reply]
+== Request / Reply pattern
+
+image::camel/inout.png[width="75%"]
+
+// ************** Camel ************
+[#camel-convert]
 == Convert
 
 * **Data Transformation** for complex use case
@@ -178,16 +189,15 @@ public interface DataFormat {
 * **Unmarshalling** : XML {icon-arrow-right} Object (JAXB)
 
 // ************** Camel ************
-== Fire / Forget pattern
+[#camel-data-format]
+== Data Format supported
 
-image::camel/inonly.png[width="65%"]
+* http://camel.apache.org/dataformat.html[> 20 Data Format]
 
-// ************** Camel ************
-== Request / Reply pattern
-
-image::camel/inout.png[width="75%"]
+image::camel/dataformat-2.png[]
 
 // ************** Camel ************
+[#camel-java-dsl]
 == Java DSL
 
 * Fluent API
@@ -213,6 +223,7 @@ public class ExampleRouteBuilder extends RouteBuilder {
 ----
 
 // ************** Camel ************
+[#camel-xml-dsl]
 == XML DSL
 
 * Alternative : Spring, Blueprint DSL
@@ -245,6 +256,7 @@ public class ExampleRouteBuilder extends RouteBuilder {
 ----
 
 // ************** Camel ************
+[#camel-features]
 == Facts
 
 * *In-Memory* bus
@@ -258,7 +270,7 @@ public class ExampleRouteBuilder extends RouteBuilder {
 * Container *Agnostic*
 
 // ************** Karaf ************
-
+[#apache-karaf]
 == Apache Karaf image:integration/karaf-logo.png[float="right"]
 
 * Java *OSGI* Runtime
@@ -268,7 +280,7 @@ public class ExampleRouteBuilder extends RouteBuilder {
 image::integration/ship-containers.png[]
 
 // ************** Karaf ************
-
+[#karaf-features]
 == Core features
 
 [.newline]
@@ -281,7 +293,7 @@ image::integration/ship-containers.png[]
 * Role Base Access Control (RBAC)
 
 // ************** Karaf ************
-
+[#karaf-container]
 == Integration container
 
 * Camel routes isolated from each other (classloader)
@@ -291,7 +303,7 @@ image::integration/ship-containers.png[]
 image:karaf/karaf1.png[]
 
 // ************** Karaf ************
-
+[#karaf-integration]
 == Integration container
 
 * Camel routes can be started/stopped/updated
@@ -300,50 +312,39 @@ image:karaf/karaf1.png[]
 image:karaf/karaf2.png[]
 
 // ************** integration everywhere ************
-
+[#cloud]
 == (Cloud) Deployment
 
 image:karaf/karaf4.png[]
 
 // ************** Fabric ************
-
+[#fabric8]
 == Fabric8 v1
 
 * Opensource integration project - http://fabric8.io
-* Mission {icon-arrow-right} Easy to deploy your java *integration* solutions and services on a number of machines, processes and JVMs
+* Mission {icon-arrow-right} simplify mangement & deployment java *integration* services on *different* machines & JVMs
 
 image::fabric/fabric-diagram.png[]
 
+// ************** Fabric ************
+[#fabric8-features]
 == Features
 
 - *Manage* container creation (locally, remotely, cloud, openshift, docker, ...)
 - *Visualise* what is running into JVM to understand your platform
 - *Monitor* whats running and easily scaling up or down
-- Support upgrades via *Version changes* and Rollback
+- Support *Upgrade* via *Version changes* and Rollback
 - *Virtualize* services (endpoints), processes
-- Search (Kibana) and *storage* engine (insight) for logs, metrics (ElasticSearch)
+- *Search* and *storage* engine for logs, camel, messages, metrics
 
 // ************** Fabric ************
-
-== Karaf limitations
-
-[.noredheader,cols="50,50"]
-|===
-| .2+|image:fuse/fabric-3.png[]
-a|* Karaf can create new instances (locally) & administrate them (locally or remotely)|
-|===
-
-* Instances are *not cloned* {icon-exclamation-triangle}
-* *Configurations* must be managed (manually, script)
-
-// ************** Fabric ************
-
+[#fabric-extend]
 == Fabric extends the possibilities
 
 image:fabric/fabric-diagram1.png[]
 
 // ************** Fabric ************
-
+[#fabric-zookeeper]
 == Coordinating System : Zoo
 
 * *Rely on* {icon-arrow-right}
@@ -353,7 +354,7 @@ Zookeeper server (ensemble of 1,3, 5 or servers) {icon-cloud}
 image:fuse/fabric-1.png[]
 
 // ************** Fabric ************
-
+[#fabric-agent]
 == Fabric Agents
 
 * Are the *clients* of the Zookeeper server(s)
@@ -367,7 +368,7 @@ image:fuse/fabric-2.png[]
 * {icon-arrow-right} get their provisioning
 
 // ************** Fabric ************
-
+[#fabric-profile]
 == Profiles
 * *Behavior* of a container
 * *Envelope(s)* containing *artifacts* to be deployed, *parameters* (system, jvm, services) to be configured
@@ -376,19 +377,18 @@ image:fuse/fabric-2.png[]
 image::fuse/fabric-5.png[width="80%",height="80%"]
 
 // ************ Hawtio *************
+[#hawtio]
+== http://hawt.io[Hawt.io] image:hawtio/hawtio_logo.svg[width="15%"]
 
-== http://hawt.io[Hawt.io]
-
-[.noredheader,cols="55,45"]
-|===
-| .2+|image:hawtio/hawtio_logo.svg[float="right",width="100%"]
-image:hawtio/hawtio-project.png[]
-a|* *OpenSource* project - Apache License
+* *OpenSource* project - Apache License
 * Birthdate : Nov 18, 2012
-* Pluggable & **modular** **web console** for managing Java **MBeans** and more ...
-|===
+* Pluggable & **modular** **web console** for managing Java **MBeans**
+
+[#block,width="700px",left="200px",top="200px"]
+image::hawtio/hawtio-project.png[]
 
 // ************ Hawtio *************
+[#jolokia]
 == http://jolokia.org[Jolokia ?]
 
 [.noredheader,cols="60,40"]
@@ -407,6 +407,7 @@ a|* Command line tools {icon-arrow-right} jmx4perl, j4psh
 image:hawtio/rest-api-jolokia-2.png[]
 
 // ************ Hawtio *************
+[#jolokia-architecture]
 == Modern HTML5 Architecture
 
 [.newline]
@@ -419,6 +420,7 @@ image:hawtio/rest-api-jolokia-2.png[]
 ** Backend : Java Servlet & **Jolokia** JMX gateway
 
 // ************ Hawtio *************
+[#jolokia-communication]
 == Communication ...
 
 ** *Web* client communicates to Jolokia *agent* over HTTP(S)
@@ -428,6 +430,7 @@ image:hawtio/rest-api-jolokia-2.png[]
 image:hawtio/hawtio-sequence.png[]
 
 // ************ Hawtio *************
+[#jolokia-plugins]
 == Plugins
 
 * *Plug-an-play* architecture ( > 25 plugins )
@@ -438,137 +441,61 @@ image:hawtio/hawtio-sequence.png[]
 * *Reusable* for developers (branding, datatable, forms, ide, perspective, tree, ui)
 
 // ************ Hawtio *************
+[#jolokia-frontend]
 == What Front looks like
 
 image:hawtio/hawtio-console.png[]
 
 // ************ Hawtio *************
-
+[#jolokia-camel]
 == Discover your camel routes
 
 image:fuse/hawtio-3.png[]
 
 // ************ Hawtio *************
-
+[#jolokia-brokers]
 == Manage your brokers
 
 image:fuse/hawtio-4.png[width="65%",height="65%"]
 image:fuse/hawtio-5.png[width="65%",height="65%"]
 
-// ************ Hawtio *************
+// ************** Product ************
+[#product-fuse]
+== *Integration & Mediation* Platform
 
+//image::fuse/jboss-fuse.png[width="80%",height="80%"]
+image::jboss-fuse-6.2.png[]
+
+* *> 100* components : file, jms, ftp, ...
+* *> 50* EIP Patterns : content based router, splitter, aggregator, ...
+
+// ************** Product ************
+[#product-amq]
+== *Messaging* Broker Platform
+
+//image::fuse/jboss-fuse.png[width="80%",height="80%"]
+image::jboss-amq-6.2.png[]
+
+* Support : JMS, AMQP, MQTT, STOMP, Websocket
+* *iPaas* (Openshift cartridges - v2)
+
+// ************ Hawtio *************
+[#not-included]
+== Future - Fuse 7
+
+[.newline]
+* Service Management & Governance : ApiMan
+* OAuth2 Server, IDM : KeyClok
+
+// ************ Hawtio *************
+[#jboss-fuse-demo]
 == JBoss Fuse 6.2 in action
 
 [.newline]
-* *DEMO* :
-** Use JBDS & Integration Stack
-** Look to a Fuse Integration Project
-** Start a Camel CXF REST Project
-** Launch Fabric8 V1 & deploy the project
-** Review the profile & create a new container
-
-// ************** integration ************
-
-== Integration complexity
-
-* JBoss Fuse & Fabric v1 is *Karaf centric* but project *requires* to deploy also on JBoss EAP, ...
-
-image::karaf/karaf5.png[]
-
-// ************** fabric v2 ************
-
-== Fabric8 v2
-
-[.newline]
-* Extend GOALS of FabricV1
-
-[.newline]
-* Provision *Other Java Containers* : JBoss EAP, Tomcat, ...
-
-[.newline]
-* Rely on a *New API* & *Architecture Design*
-
-[.newline]
-* Decouple Devs & Ops
-
-// ************** fabric v2 ************
-
-== Support Continuous Delivery Strategy
-
-image::fabric/cd_process_diagram.png[]
-
-// ************** fabric v2 ************
-
-== More Maven plugins
-
-* docker:build, docker:push
-
-[.newline]
-* fabric8:json, fabric8:create-env, fabric8:publish
-
-[.newline]
-* fabric8:create-routes, fabric8:delete-pods
-
-// ************** fabric v2 ************
-
-== Docker
-
-image:fabric/docker-logo.png[]
-
-* *Container runtime* & *image* distribution
-
-// ************** fabric v2 ************
-
-== Container vs VM
-
-image:fabric/docker_vm_diagram.jpg[]
-
-// ************** fabric v2 ************
-
-== Docker
-
-image:fabric/docker-filesystems-multilayer.png[width="60%,height="60%"]
-
-* *Launch Process* (cmd/entrypoint)
-* Top of a Union FS mounted with immutable images
-* Benefits: *portability*, *reusability*, versioning, application-centric
-
-// ************** fabric v2 ************
-
-== Kubernetes
-
-* Runtime & *Operational management* of containers
-* ApiServer (event, status), *Scheduler*, *Controller* & State Storage
-* *Agent - Kubelet* - manage containers on host
-* Containers {icon-arrow-right} *pods* (= shared docker containers)
-
-image:fabric/kubernetes.png[]
-
-// ************** fabric v2 ************
-
-== Openshift v3
-
-image:fabric/openshift_logo.png[width="40%,height="40%"]
-
-* *Designed* around Kubernetes, Docker & Fabric8
-* Provide additional features : build (STI), deploy, manage & promote
-
-// ************** fabric v2 ************
-
-== OS3 Architecture
-
-image:fabric/ose-v3.png[]
-
-// ************** fabric & hawtio ************
-== Fabric8 v2 in action
-
-[.newline]
-* *DEMO* :
-** Move to Fabric8 v2
-** Start VM Machine running Openshiftv3 & Docker
-** Install a Camel Servlet WAR project as a Kube Application
+* *DEMO*
 
 // *********************************
+[#questions]
 == Questions
 
 [.noredheader,cols="45,.<55"]
