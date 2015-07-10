@@ -376,6 +376,14 @@ image:fuse/fabric-2.png[]
 
 image::fuse/fabric-5.png[width="80%",height="80%"]
 
+// ************** Fabric ************
+[#fabric-virtual]
+== Virtualization & Load balancing
+
+* Goal {icon-arrow-right} Create *virtual* endpoints, to *scale* services (WS/REST, A-MQ)
+
+image::fuse/fabric-camel.png[]
+
 // ************ Hawtio *************
 [#hawtio]
 == http://hawt.io[Hawt.io] image:hawtio/hawtio_logo.svg[width="15%"]
@@ -480,7 +488,7 @@ image::jboss-amq-6.2.png[]
 [.newline]
 * Fabric8 - V2
 
-* More integrated with Openshift v3, Kubernetes & Docker
+* More integrated {icon-arrow-right} Openshift v3, Kubernetes & Docker
 
 * Service Management & Governance : ApiMan
 

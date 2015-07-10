@@ -408,7 +408,7 @@ image::fuse/fabric-5.png[width="80%",height="80%"]
 
 == Virtualization & Load balancing
 
-* +++&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;+++ Create *indirection* points, *Easy elastic scaling* of services (Camel, CXF, ...)
+* +++&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;+++ Create *indirection* points, *easy scaling* of services (Camel, CXF, ...)
 
 image::fuse/fabric-camel.png[]
 
