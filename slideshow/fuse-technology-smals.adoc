@@ -499,10 +499,12 @@ image::jboss-amq-6.2.png[]
 == JBoss Fuse in action
 
 * *DEMO*
-** REST Camel service (local)
-** Deploy on Karaf
-** Create container & expose REST Service using Fabric
-** Define Policy for the endpoint & authorize using Oauth2
+** Design REST Service service using *JBDS*
+** Deploy on *JBoss Fuse* as a *profile*
+** Create container & expose REST Service using *Fabric*
+** Define *Security Policy* for the endpoint {icon-arrow-right}
+*** *Authenticate* the user (*BASIC* - static realm)
+*** *Authorize* using *Oauth2*
 
 // *********************************
 [#questions]
