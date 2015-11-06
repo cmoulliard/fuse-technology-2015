@@ -803,7 +803,7 @@ image:fuse/hawtio-5.png[width="65%",height="65%"]
 == *Integration & Mediation* Platform
 
 //image::fuse/jboss-fuse.png[width="80%",height="80%"]
-image::jboss-fuse-6.2.png[]
+image:jboss-fuse-6.2.png[]
 
 * *> 100* components : file, jms, ftp, ...
 * *> 50* EIP Patterns : content based router, splitter, aggregator, ...
@@ -813,10 +813,82 @@ image::jboss-fuse-6.2.png[]
 == *Messaging* Broker Platform
 
 //image::fuse/jboss-fuse.png[width="80%",height="80%"]
-image::jboss-amq-6.2.png[]
+image:jboss-amq-6.2.png[]
 
 * Support : JMS, AMQP, MQTT, STOMP, Websocket
 * *iPaas* (Openshift cartridges - v2)
+
+// ************** A-MQ ************
+[#amq-architecture]
+== Broker Architecture
+
+image:broker-architecture.png[]
+
+// ************** A-MQ ************
+[#amq-point-to-point]
+== Point-to-Point Messaging
+
+- Producer sends message(s) to queue using JMS API
+- Consumer listens for message(s) from queue
+- Messages stored until read or expired
+- Messages can be persisted, are read only once
+
+image:point-to-point.png[]
+
+// ************** A-MQ ************
+[#amq-loadbalance]
+== Load Balancing
+
+* Workload can be distributed between connected clients 
+* Round-robin algorithm used 
+
+image:loadbalancing.png[]
+
+// ************** A-MQ ************
+[#amq-pubsub]
+== Publish and Subscribe
+
+- Client sends message to topic
+- Broker sends message to all currently connected subscribers
+- Messages are consumed _x_ times (1-to-many)
+
+image:publish-subscribe.png[]
+
+// ************** A-MQ ************
+[#amq-dursub]
+== Durable Subscriber
+
+- Messages usually expire when subscriber(s) not connected
+- Supports connection/disconnection
+- `DurableSubscriber` property = unique client ID registered to broker
+- Subscriber client ID controls messages delivered to broker
+
+image::https://docs.oracle.com/cd/E19798-01/821-1841/images/jms-durableSubscriber.gif[]
+
+// ************** A-MQ ************
+[#amq-reqreply]
+== Request/Reply
+
+* Async request/reply pattern
+* Producer sets 2 properties to send message
+** `JMSReplyTo`: Destination for response message
+** `JMSCorrelationID`: Unique ID matches/correlates messages (request/response)
+* Consumer replies to `JMSReplyTo` destination using `JMSCorrelationID` in message
+
+image:request-reply.png[]
+
+// ************** A-MQ ************
+[#amq-network-of-broker1]
+== Network of Brokers
+
+* Created when one broker establishes network connection to another broker:
++
+image:broker_networks_01.gif[]
+
+* Supports multiple connectors
+* To define as bi-directional, use `duplex=true`:
++
+image:broker_networks_03.gif[]
 
 // ************ Hawtio *************
 [#not-included]
