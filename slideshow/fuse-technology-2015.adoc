@@ -254,6 +254,115 @@ public interface DataFormat {
 image::camel/dataformat-2.png[]
 
 // ************** Camel ************
+[#camel-howto1]
+== how to 1
+
+image::eip/cbr.png[]
+
+[source,java]
+----
+from(""activemq:queue:quotes"")
+   .choice()
+       .when().xpath("/quotes/product = 'widget'")
+           .to("direct:b")
+       .when().xpath("/quotes/product = 'gadget'")
+           .to("direct:c");
+----
+
+// ************** Camel ************
+[#camel-howto2]
+== how to 2
+
+image::eip/filter1.png[]
+
+// ************** Camel ************
+[#camel-howto3]
+== how to 3
+
+image::eip/filter2.png[]
+
+// ************** Camel ************
+[#camel-howto4]
+== how to 4
+
+image::eip/filter3.png[]
+
+// ************** Camel ************
+[#camel-howto5]
+== how to 5
+
+image::eip/filter4.png[]
+
+// ************** Camel ************
+[#camel-howto6]
+== how to 6
+
+[source,java]
+----
+public void configure() throws Exception {
+   Endpoint A = endpoint("activemq:queue:all");
+   Endpoint B = endpoint("activemq:widget");
+   Predicate isWidget = xpath("/quote/product = 'widget'");
+   
+   from(A).filter(isWidget).toB);
+}
+----
+
+// ************** Camel ************
+[#camel-howto7]
+== how to 7
+
+[source,java]
+----
+import org.apache.camel.builder.RouterBuilder;
+
+public class FilterRoute extends RouteBuilder {
+  public void configure() throws Exception {
+    Endpoint A = endpoint("activemq:queue:all");
+    Endpoint B = endpoint("activemq:widget");
+    Predicate isWidget = xpath("/quote/product = 'widget'");
+   
+    from(A).filter(isWidget).to(B);
+  }
+}
+----
+
+// ************** Camel ************
+[#camel-howto8]
+== how to 8
+
+[source,java]
+----
+import org.apache.camel.builder.RouterBuilder;
+
+public class FilterRoute extends RouteBuilder {
+  public void configure() throws Exception {
+   
+    from("activemq:queue:all")
+      .filter().xpath("/quote/product = 'widget'");
+      .to("activemq:widget");
+  }
+}
+----
+
+// ************** Camel ************
+[#camel-howto9]
+== how to 9
+
+[source,xml]
+----
+<camelContext>
+  <route>
+    <from uri="activemq:queue:all"/>
+      <filter>
+        <xpath>/quote/product = 'widget'</xpath>
+        <to uri="activemq:queue:widget"/>
+      </filter>
+    </route>
+</camelContext>
+----
+
+// ************** Camel ************
 [#camel-java-dsl]
 == Java DSL
 
@@ -889,6 +998,12 @@ image:broker_networks_01.gif[]
 * To define as bi-directional, use `duplex=true`:
 +
 image:broker_networks_03.gif[]
+
+// ************** A-MQ ************
+[#amq-bigpicture]
+== Big picture
+
+image:alltogether.png[width="900"]
 
 // ************ Hawtio *************
 [#not-included]
