@@ -1,0 +1,883 @@
+:footer_copyright: Copyright ©2015 Red Hat, Inc.
+:imagesdir: images/
+:speaker: Charles Moulliard
+:speaker-title: Pr. Solution Architect, Fuse Expert, Apache Committer
+:speaker-email: cmoulliard@redhat.com
+:speaker-blog: http://cmoulliard.github.io
+:speaker-twitter: http://twitter.com/cmoulliard[@cmoulliard]
+:talk-speaker: {speaker}
+:talk-name: How Red Hat Middleware technology can simplify your Integration Development
+:talk-date: 5th of October 2015
+
+[#cover,data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,left="70px",top="0px"]
+image::{revealjs_cover_image}[width="20%"]
+
+[#block,left="750px",top="80px"]
+image:redhat-emea-partner-2015.png[width="95%"]
+
+[#cover-h1,width="600px",left="0px",top="200px"]
+{talk-name}
+
+[#cover-h2,width="800px",left="0px",top="450px"]
+{speaker} +
+{talk-date}
+
+// ************** who - charles ********
+[#who]
+== Who
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="30,70"]
+|===
+| image:cmoulliard.png[width="90%",height="100%"]
+| {speaker-title}
+
+Blog: {speaker-blog}
+
+Twitter: {speaker-twitter}
+
+Email: {speaker-email} |
+|===
+
+* Committer on Apache Camel, Karaf, Fabric8, Hawtio ... & PMC
+* Technology evangelist
+* Mountain Biker, Belgian Beer Fan, Blogger
+
+// ************** Agenda  ********
+[#agenda]
+== Agenda
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Why integration is so hard & expensive ?
+* Integration Architecture
+* How can we simplify that ?
+* Ideal Integration Platform
+* Demo
+
+// ************** transition page ************
+[#transition1, data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,width="200px",left="70px",top="0px"]
+image::{revealjs_cover_image}[]
+
+[#cover-h1,width="600px",left="0px",top="300px"]
+*Integration is so hard & expensive*
+
+// ************** why so hard ********
+[#why-so-hard-1]
+== Why integration is so hard ?
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="45,55"]
+|===
+a|* *Integration* is *Hard!*
+* *Different* system *vintages*
+* Mainframe, EAI Hub, MOM, EJB, Web Services
+* *Systems* must *collaborate* 
+* Team collaboration
+* Many different business to *interface*| image:esb.png[width="85%"]
+|===
+
+// ************** why so hard ********
+[#why-so-hard-2]
+== Why integration is so hard ?
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="40,60"]
+|===
+a|
+* *Protocol*
+* *Format*
+* Data *Mapping*
+* Cross-*domain*, Per-domain
+* WSDL, XSD, JSon | image:integration-2.png[width="95%"]
+|===
+
+// ************** why so hard ********
+[#why-so-hard-3]
+== Why integration is so hard ?
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="55,45"]
+|===
+a|
+* *Mngt* of Data Models, Mappings, BUs
+* *Common* vocabulary, *grammar* between integration actors
+* *Catalogue* or *Registry* of
+** Services
+** Data Format
+** Validation rules | image:lack-of-management.jpg[]
+|===
+
+// ************** slide ********
+[#so-expensive]
+== Why so expensive ?
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="65,35"]
+|===
+a|
+* Service(s) Review (consumer/producer)
+
+{space}{space}
+
+* Code, Documentation
+
+{space}{space}
+
+* *Update* Testing coverage (Unit/Int.)
+
+{space}{space}
+
+* Prepare *new* Release(s)
+
+{space}{space}
+
+* *Flow* Procedures | image:expensive.jpeg[]
+|===
+
+[#block,width="200px",left="250px",top="150px"]
+{icon-arrow-down}
+
+[#block,width="200px",left="250px",top="220px"]
+{icon-arrow-down}
+
+[#block,width="200px",left="250px",top="300px"]
+{icon-arrow-down}
+
+[#block,width="200px",left="250px",top="380px"]
+{icon-arrow-down}
+// ************** slide ********
+[#impact-measurement]
+== Impact
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="75,35"]
+|===
+a|
+* *Existing* ApplicationS
+* *Business* & Data Model / Services
+* Calculate *Risk* & *Modifications* | image:swot.png[]
+|===
+
+// ************** transition page ************
+[#transition2, data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,width="200px",left="70px",top="0px"]
+image::{revealjs_cover_image}[]
+
+[#cover-h1,left="0px",top="300px",width="2000px"]
+*Integration Architecture*
+
+// ************** facts ********
+[#history]
+== History
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* 2000 - *EAI* 
+
+{space}
+
+* 2005 - *ESB*
+
+{space}
+
+* 2007 - *EIP*
+
+[#block,top="50px",left="350px"]
+image:eai2.jpg[width="75%"]
+
+[#block,top="300px",left="350px"]
+image:esb.png[width="55%"]
+
+// ************** facts ********
+[#evolution]
+== Evolution
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Proprietary {icon-arrow-right} Standards based - JBI, SCA
+
+{space}
+
+* From Standards {icon-arrow-right} Integration Framework
+
+{space}
+
+* Architecture *Centric* (ESB) {icon-arrow-right} *Distributed* (Microservice - OSGI)
+
+// ************** slide ********
+[#issue-1]
+== JBI & Centric vision
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* *XML* based
+* Inner conversion from Format-A to XML or XML to Format-B
+* *ESB* {icon-arrow-right} *Centric* Platform
+
+[#block,top="300px",left="50px"]
+image:jbi.jpg[]
+
+[#block,top="300px",left="700px"]
+image:csv-xml.jpeg[]
+
+// ************** slide ********
+[#issue-2]
+== Dev Impact
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="45,65"]
+|===
+a|
+* *Complex* to use/debug
+* Learning curve {icon-arrow-up}
+* Time to design/develop {icon-arrow-up}
+* J2EE {icon-arrow-left} Integration {icon-exclamation-mark}
+* Many specs to *know*
+** WS, WSDL
+** XSD, XML | image:dev_impact1.png[width="99%"]
+|===
+
+// ************** transition page ************
+[#transition3, data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,width="200px",left="70px",top="0px"]
+image::{revealjs_cover_image}[]
+
+[#cover-h1,left="0px",top="300px",width="2000px"]
+*How can we simplify/improve that ?*
+
+// ************** slide ********
+[#vision]
+== Vision
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::jboss-fuse-cloud.jpg[width="80%"]
+
+* Goal {icon-exclamation-mark} Integrate, Exchange, Communicate *everywhere*
+
+// ************** What are we looking for ? ********
+[#looking-for]
+== Rethink 
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* *Agile* Project Mngt {icon-arrow-right} Scrum
+* *Architecture* {icon-arrow-right} Microservice
+* *Automate* Test, Build
+* *Release* more *often*
+* {icon-question-mark} Standards & Technology used
+
+[#block,left="550px",top="50px"]
+image:scrum-process.jpg[width="70%"]
+
+[#block,left="50px",top="350px"]
+image:microservice.jpg[width="65%"]
+
+// ************** slide ********
+[#opensource]
+== Open Source
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* *Adopt* it {icon-arrow-right} no more *proprietary* code
+* No *viral* license {icon-arrow-right} *freedom* to use, modify & redistribute it
+
+image:oss.jpeg[] image:oss1.jpeg[]
+
+// ************** slide ********
+[#java-integration]
+== Move to *EIP*
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[#block,left="10px",top="120px"]
+image:eip-book.jpg[]
+
+[#block,left="300px",top="120px"]
+image:eip-patterns.png[]
+
+// ************** slide ********
+[#devops-strategy]
+== DevOps vision ...
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader]
+|===
+a|* *Objective* {icon-arrow-right} *Continuous Integration* strategy
+* Establish a concrete *pipeline to production* {icon-exclamation-mark}
+* Build/Test/Release *more* often! | image:idea.jpeg[]
+|===
+
+See next *conference* about DevOps
+
+// ************** transition page ************
+[#transition4, data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,width="200px",left="70px",top="0px"]
+image::{revealjs_cover_image}[]
+
+[#cover-h1,left="0px",top="300px",width="2000px"]
+*Ideal Integration Platform*
+
+// ************** Camel ************
+[#apache-camel]
+== Apache Camel
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Java **Integration** Framework (*OSS*)
+
+[.newline]
+* Implements {icon-arrow-right} **D**omain **S**pecific **L**anguage
+
+[.newline]
+* Supports **E**nterprise **I**ntegration **P**atterns
+
+[.newline]
+* {icon-cogs} *Manage Complex use cases* {icon-arrow-right}
+** correlation, aggregation
+** split, multicast
+** routing, filter
+** transformation
+
+[#block,top="50px",left="600px"]
+image:camel-box-small.png[]
+
+[#block,top="350px",left="400px"]
+image:eip_book.jpg[width="45%"]
+
+// ************** Camel ************
+[#camel-java-dsl]
+== Java DSL
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Fluent API
+
+[source,java]
+----
+package my.cool.demo;
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class ExampleRouteBuilder extends RouteBuilder {
+    @Override
+    public void configure() throws Exception {
+
+        from("amq:queue:quotes")
+           .filter().xpath("/quote/product/ = 'widget")
+                .bean("QuotesService", "widget")
+           .filter().xpath("/quote/product/ = 'gadget")
+                .bean("QuotesService","gadget");
+    }
+}
+
+----
+
+// ************** Camel ************
+[#camel-xml-dsl]
+== XML DSL
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Alternative : Spring, Blueprint
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+    <bean id="quotesService" class="my.cool.demo.camel.QuotesService"/>"
+
+    <camelContext  xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <from uri="amq:queue:quotes"/>
+            <filter>
+                <xpath>"/quote/product/ = 'widget"</xpath>
+            </filter>
+                <bean id="quotesService" method="widget"/>
+            <filter>
+                <xpath>"/quote/product/ = 'gadget"</xpath>
+            </filter>
+            <bean id="quotesService" method="gadget"/>
+        </route>
+    </camelContext>
+</beans>
+----
+
+// ************** slide ********
+[#dsl-eip]
+== Benefit
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Use *Same Language*, *grammar* between actors:
+** developer, analyst & architect
+
+* Adopt *Domain* *Specific* *Language*
+
+{icon-arrow-right} Reduce Functional to Develop Time
+
+[#block,left="600px",top="180px"]
+image:goal.jpeg[]
+
+// ************** Camel ************
+[#camel-route]
+== Simple Concepts
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Workflow {icon-arrow-right} Camel project {icon-arrow-right} Collection of routes
+* Route *{icon-arrow-right}* Sum of Processor(s) + Interceptor(s)
+* Route *{icon-arrow-right}* Produce or Consume Messages
+
+image:pipeline.png[]
+
+// ************** Camel ************
+[#camel-interceptor]
+== Interceptor
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* To trace, log, capture business events
+
+[.newline]
+image:pipeline2.png[]
+
+// ************** Camel ************
+[#camel-ff]
+== Fire / Forget pattern
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::inonly.png[width="65%"]
+
+// ************** Camel ************
+[#camel-request-reply]
+== Request / Reply pattern
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::inout.png[width="75%"]
+
+// ************** Camel ************
+[#camel-convert]
+== Convert
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* **Data Transformation** for complex use case
+
+[source, java]
+----
+package my.cool.demo;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import org.apache.camel.Exchange;
+
+public interface DataFormat {
+
+    void marshal(Exchange exchange, Object graph, OutputStream stream) throws Exception;
+
+    Object unmarshal(Exchange exchange, InputStream stream) throws Exception;
+}
+----
+
+* **Marshalling** : Object {icon-arrow-right} XML (JAXB)
+* **Unmarshalling** : XML {icon-arrow-right} Object (JAXB)
+
+// ************** Camel ************
+[#camel-data-format]
+== Data Format supported
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* http://camel.apache.org/dataformat.html[> 20 Data Format]
+
+image::dataformat-2.png[]
+
+// ************** Camel ************
+[#camel-component]
+== http://camel.apache.org/components.html[Components]
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::components.png[width="85%"]
+
+// ************** Camel ************
+[#camel-context]
+== Unit of Work
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="50,50"]
+|===
+a| * *CamelContext* registering {icon-arrow-right}
+* Routes : *List of Processors*
+* Collection of *Endpoints* | image:camel-features.png[]
+|===
+
+// ************** Camel ************
+[#camel-features]
+== Facts
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* *In-Memory* bus
+* Support *Object* : XML, File, Stream, Bytes
+* *Predicate* & *Expression* language (xslt, xpath, ...)
+* *Sync*/*Async* exchanges
+* Threads Management
+* *Tx* Architecture
+
+// ************** slide ********
+[#junit]
+== What about Testing
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[source,java]
+----
+public class FilterTest extends CamelTestSupport {
+
+    @EndpointInject(uri = "mock:result")
+    protected MockEndpoint resultEndpoint;
+
+    @Produce(uri = "direct:start")
+    protected ProducerTemplate template;
+
+    @Test
+    public void testSendMatchingMessage() throws Exception {
+        String expectedBody = "<matched/>";
+
+        resultEndpoint.expectedBodiesReceived(expectedBody);
+
+        template.sendBodyAndHeader(expectedBody, "foo", "bar");
+
+        resultEndpoint.assertIsSatisfied();
+    }
+    
+    @Override
+        protected RouteBuilder createRouteBuilder() {
+            return new RouteBuilder() {
+                public void configure() {
+                    from("direct:start").filter(header("foo").isEqualTo("bar")).to("mock:result");
+                }
+        };
+    }
+----
+
+* Benefit from your Java *JUnit* Testing Knowledge
+
+// ************** slide ********
+[#exception]
+== Exception handling
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[source,java]
+----
+// we do special error handling for when OrderFailedException is thrown
+onException(OrderFailedException.class)
+    // we mark the exchange as handled so the caller doesn't receive the
+    // OrderFailedException but whatever we want to return instead
+    .handled(true)
+    // this bean handles the error handling where we can customize the error response
+    .bean(OrderService.class, "orderFailed")
+    // and since this is an unit test we use mocks for testing
+    .to("mock:error");
+----
+
+[source,java]
+----
+// this is just the generic error handler where we set the destination
+// and the number of redeliveries we want to try
+errorHandler(deadLetterChannel("mock:error").maximumRedeliveries(1));
+----
+
+[source,java]
+----
+from("direct:start")
+    // this bean is our order service
+    .bean(OrderService.class, "handleOrder")
+    // this is the destination if the order is OK
+    .to("mock:result");
+----
+
+* Capitalize your Java skills about *Exception Management*
+
+// ************** slide ********
+[#exception1]
+== More about Exception
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[source,xml]
+----
+<route>
+    <from uri="direct:start"/>
+    <doTry>
+        <process ref="processorFail"/>
+        <to uri="mock:result"/>
+        <doCatch>
+            <exception>java.io.IOException</exception>
+            <exception>java.lang.IllegalStateException</exception>
+            <to uri="mock:catch"/>
+        </doCatch>
+        <doFinally>
+            <to uri="mock:finally"/>
+        </doFinally>
+    </doTry>
+</route>
+----
+
+* *Mimic* Java Try/Catch/Block Structure
+
+// ************** Karaf ************
+[#karaf-container]
+== Integration container
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Camel routes isolated from each other (classloader)
+* Bundle {icon-arrow-right}  CamelContext boundary {icon-arrow-right} acting as a Local BUS
+* Camel routes {icon-arrow-right} can have different SLA (Threads, Policies, ...)
+
+image:karaf/karaf1.png[]
+
+// ************** Karaf ************
+[#karaf-integration]
+== Integration container
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Camel routes can be started/stopped/updated
+* {icon-arrow-right} Simplify maintenance process
+
+image:karaf/karaf2.png[]
+
+// ************** integration everywhere ************
+[#cloud]
+== Management
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image:karaf/karaf4.png[]
+
+// ************** Fabric ************
+[#fabric8]
+== Fabric8 v1
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Opensource integration project - http://fabric8.io
+* Mission {icon-arrow-right} simplify management & deployment java *integration* services on *different* machines & JVMs
+
+image::fabric-diagram.png[]
+
+// ************** Fabric ************
+[#fabric8-features]
+== Features
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+- *Manage* container creation (locally, remotely, cloud, openshift, docker, ...)
+- *Visualise* what is running into JVM to understand your platform
+- *Monitor* whats running and easily scaling up or down
+- Support *Upgrade* via *Version changes* and Rollback
+- *Virtualize* services (endpoints), processes
+- *Search* and *storage* engine for logs, camel, messages, metrics
+
+// ************** Fabric ************
+[#fabric-extend]
+== Extends the possibilities
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image:fabric-diagram1.png[]
+
+// ************** Fabric ************
+[#fabric-console]
+== Console
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::jbossfuse-fabric1.png[]
+
+// ************** Fabric ************
+[#fabric-create]
+== Create container
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::jbossfuse-fabric2.png[width="95%"]
+
+// ************** Fabric ************
+[#fabric-create]
+== Service
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::jbossfuse-fabric3.png[width="95%"]
+
+// ************ Hawtio *************
+[#jolokia-camel]
+== Discover your camel routes
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image:hawtio-3.png[]
+
+// ************** Fabric ***********
+[#analyze]
+== Manage Log/Events
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::elasticsearch.png[80%,80%]
+
+// ************** Fabric ***********
+[#insight]
+== Insight Camel
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::es-camel.png[80%,80%]
+
+// ************** slide ********
+[#governance-service]
+== Security
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Services & governance : Apiman
+* SSO, Oauth2 : Keycloak
+
+image:apiman1.png[width="75%"]
+
+// ************** slide ********
+[#apiman]
+== Security
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+* Policy based
+ 
+image::apiman3.png[]
+
+* More info - see *Fuse In Action* Lab
+
+// ************** How Can we simplify that ********
+[#ideal-platform]
+== Fuse World
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+image::fuse-technology2-donut.png[]
+
+// ************** transition page ************
+[#transition5, data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
+== {blank-space}
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[#block,width="200px",left="70px",top="0px"]
+image::{revealjs_cover_image}[]
+
+[#cover-h1,width="600px",left="0px",top="350px"]
+*Demo*
+
+// *********************************
+[#questions]
+== Questions
+
+[#block,top="0px",left="790px"]
+image:{revealjs_conference_logo}[width="80%"]
+
+[.noredheader,cols="65,.<45"]
+|===
+
+.2+|image:questions.png[width="95%",height="95%"]
+a|* Twitter : *{speaker-twitter}*
+|===
+
+* More info {icon-arrow-right}
+ - www.jboss.org/products/fuse.html
+ - http://www.redhat.com/en/technologies/jboss-middleware
+
+
+
+

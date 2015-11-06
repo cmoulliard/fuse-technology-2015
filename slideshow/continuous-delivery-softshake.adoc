@@ -1,0 +1,494 @@
+:footer_copyright:
+:imagesdir: images/
+:speaker: Charles Moulliard
+:speaker-title: Apache Committer, Architect, Fuse Expert
+:speaker-email: cmoulliard@redhat.com
+:speaker-blog: http://cmoulliard.github.io
+:speaker-twitter: http://twitter.com/cmoulliard[@cmoulliard]
+:talk-speaker: {speaker}
+:talk-name: Continuous Delivery & Integration with Fabric8 on Cloud platform
+:talk-date: 23th of October 2015
+
+[#cover,data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,width="900px",left="0px",top="80px"]
+{talk-name}
+
+[#cover-h2,width="800px",left="0px",top="350px"]
+{speaker} +
+{talk-date}
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** who - charles ********
+[#who]
+== Who
+
+[.noredheader,cols="30,70"]
+|===
+| image:cmoulliard.png[width="90%",height="100%"]
+| {speaker-title}
+
+Blog: {speaker-blog}
+
+Twitter: {speaker-twitter}
+
+Email: {speaker-email} |
+|===
+
+* Committer on Apache Camel, Karaf, Fabric8, Hawtio ... & PMC
+* Technology evangelist
+* Mountain Biker, Belgian Beer Fan, Blogger
+
+// ************** Agenda ********
+[#agenda]
+== Agenda
+
+* The cost of change
+* CD/CI
+* Technology
+* OpenShift
+* Fabric8
+* Demo
+
+// ************** transition page ************
+[#transition1, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,width="600px",left="0px",top="200px"]
+*Cost of change*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** cost of change ********
+[#cost-of-change]
+== Cost of change image:change.png[width="15%",height="15%",float="right"]
+
+[.noredheader,cols=""]
+|===
+| **B**usiness requirement
+|
+| {icon-arrow-down} 2x
+|
+| **D**evelopment
+|
+| {icon-arrow-down} 3x
+|
+| **O**peration
+|
+| {icon-arrow-down} 4x
+|
+| **I**nfrastructure
+|===
+
+// ************** cost of change ********
+[#integration-cost]
+== Integration costs
+
+[.noredheader,cols="45,55"]
+|===
+a|* *Integration* is *Hard!*
+* *Different* system *vintages*
+* Mainframe, EAI Hub, MOM, EJB, Web Services
+* *Systems* must *collaborate* | image:esb.png[width="85%"]
+|===
+
+// ************** cost of change ********
+[#integration-cost-cont1]
+== Integration costs
+
+[.noredheader,cols="40,60"]
+|===
+a|
+* *Protocol* (IIOP, DCOM, JMS, MQTT, AMDP, ...)
+* *Standard* (JBI, EJB)
+* *Data Format* (XSD, JSon)
+* Data *Mapping* (csv to XML) | image:integration-2.png[width="95%"]
+|===
+
+// ************** cost of change ********
+[#integration-cost-cont2]
+== Integration costs
+
+[.noredheader,cols="40,60"]
+|===
+a|
+* *Services* governance
+* Security
+* *Procedures*
+* *Volumetry*
+* *Timing*
+* *Communication* | image:integration-1.png[width="90%"]
+|===
+
+// ************** transition page ************
+[#transition2, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,left="0px",top="200px",width="2000px"]
+*Continuous Delivery Strategy !*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** devops ***********
+[#devops]
+== {blank-space}
+
+[#block,width="800px",top="0px"]
+image:worked-fine-in-dev.png[width="80%"]
+
+// ************** devops ************
+[#devops-wtf]
+== “WTF is DevOps?”
+
+[.noredheader]
+|===
+a| * *IT* is a *core* competency
+* *Set* of *principles*
+* There’s more to applications than coding!
+* Feedback, *Repetition*
+* *Communication*
+* People! | image:wtf-dev-ops.png[width="95%"]
+|===
+
+// ************** devops ************
+[#devops-wtf1]
+== “Coder, programmer”
+
+image::developer.jpg[width="75%"]
+
+// ************** devops ************
+[#devops-wtf2]
+== “Interest”
+
+image::languages.jpeg[width="65%"]
+
+{icon-arrow-right} java, web2, html, js, unit test, ...
+ 
+// ************** devops ************
+[#devops-wtf3]
+== “Operation guy”
+
+image::opts-it.jpg[width="65%"]
+
+{icon-arrow-right} log, cpu, thread blocked, report, procedure, alert, monitoring, ...
+
+// ************** devops ************
+[#cd]
+== Strategy
+
+[.noredheader]
+|===
+a|* *Objective* {icon-arrow-right} *Continuous Integration* strategy
+* Establish a concrete *pipeline to production* {icon-exclamation-mark}
+* Build/Test/Release *more* often | image:idea.jpeg[]
+|===
+
+// ************** devops ************
+[#cd1]
+== Impact
+
+[.noredheader, cols="40,60"]
+|===
+a|* *Bottlenecks ?*
+* Involves *Dev* & *Ops* to be *successful*
+* Every *build* {icon-arrow-right} "release candidate" | image:collaborate.jpeg[]
+|===
+
+// ************** devops ************
+[#cd-automate]
+== Automate Pipeline
+
+[.noredheader, cols="40,60"]
+|===
+a|* Developer
+** *Unit* test
+** *Integration* test
+** *Build*
+** *Deployment*
+** Doc / Release | image:devops2.jpeg[]
+|===
+
+// ************** devops ************
+[#cd-automate1]
+== Automate Pipeline
+
+[.noredheader, cols="40,60"]
+|===
+a|* Operations
+** Setup *(V)Machine*
+** *Provisioning* software
+** *Deploy* procedures in QA/UAT/PROD | image:devops1.jpeg[]
+|===
+
+// ************** transition page ************
+[#transition3, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,left="0px",top="200px",width="2000px"]
+*Requirements to support CD*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** devops ************
+[#cd-tools]
+== Dev Tools
+
+[.noredheader]
+|===
+a|* SCM {icon-arrow-right} Git
+* Code Review {icon-arrow-right} Gerrit
+* Git Repos mngt {icon-arrow-right} Gitlab/Gogs
+* Build {icon-arrow-right} Apache Maven
+* Automate {icon-arrow-right} Jenkins
+* Code Quality {icon-arrow-right} Sonarqube
+* Project Mngt {icon-arrow-right} Taiga
+* IRC/Chat {icon-arrow-right} LetsChat
+a|
+[#block, top=25px, left=500px]
+image:fabric8-cd-tools.png[height="65%"]
+|===
+
+// ************** devops ************
+[#cd-tools1]
+== Platform
+
+[.noredheader]
+|===
+a|* Machine -> VM
+* VM -> Linux **Container**
+* Red Hat **Atomic** Enterprise Platform
+a|
+[#block, top=90px, left=500px]
+image:rhel-atomic.png[height="65%"]
+|===
+
+// ************** transition page ************
+[#transition4, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,left="0px",top="200px",width="2000px"]
+*Linux container*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** docker ************
+[#process]
+== Process
+
+[#block,width="800px",top="50px"]
+image:docker-animated-1.gif[]
+
+// ************** docker ************
+[#docker-image]
+== Docker
+
+image::docker-filesystems-multilayer.png[width="60%,height="60%"]
+
+* Union *FS* mounted with immutable images
+* Benefits: *portability*, *reusability*, versioning, application-centric
+
+// ************** docker ************
+[#docker-config]
+== Docker config
+
+[#block,width="150px",top="50px",left="50px"]
+image:dockerfile.png[width="95%"]
+
+// ************** docker ************
+[#docker]
+== Docker
+
+* *Container runtime*, *image* distribution, *Process* launcher
+
+[#block,width="650px",top="150px"]
+image:docker-animated-2.gif[]
+
+[#block,width="100px",top="-20px",left="200px"]
+image:docker-logo.png[width="25%",height="25%"]
+
+// ************** transition page ************
+[#transition5, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,left="0px",top="200px",width="2000px"]
+*Management platform*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** kubernetes ************
+[#kubernetes]
+== Kubernetes
+
+* Runtime & *Operational management* of containers
+* ApiServer (event, status), *Scheduler*, *Controller* & State Storage
+* *Agent - Kubelet* - manage containers on host
+* Containers {icon-arrow-right} *pods* (= shared docker containers)
+
+image::kubernetes-logo.png[width="25%",height="25%"]
+
+// ************** kubernetes ************
+[#kubernetes-platform]
+== Kubernetes
+
+[#block,width="800px",left="0px",top="50px"]
+image:kubernetes-platform.png[]
+
+// ************** kubernetes ************
+[#pord-docker]
+== Pod & docker
+
+image::fabric8-pod.png[]
+
+* Communicate to each other using *skyDNS* to resolve hostname
+
+// ************** kubernetes ************
+[#pod-port]
+== Pod & port
+
+image::fabric8-pod-port.png[]
+
+* Ports can be *exposed*
+
+// ************** kubernetes ************
+[#pod-volume]
+== Pod & volume
+
+image::fabric8-pod-volume.png[]
+
+* *Share data* using *mounted volume* between host & container
+
+// ************** kubernetes ************
+[#kubernetes-service]
+== Kubernetes Service
+
+image::fabric8-service-pod.png[]
+
+* Kube Service *loadbalanced* through the pods using *HA-Proxy*
+ *Routes* map *private* with *public* IP address
+
+// ************** kubernetes ************
+[#kube-application]
+== Kube Application JSon
+
+[.noredheader]
+|===
+| image:kubernetes-json-1.png[width="85%"] | image:kubernetes-json-2.png[width="65%"]
+|===
+
+// ************** transition page ************
+[#transition6, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,left="0px",top="200px",width="2000px"]
+*Platform as Service*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// ************** openshift ************
+[#paas]
+== OpenShift v3
+
+[.noredheader,cols="45,55"]
+|===
+a|* *Designed* around Kubernetes, Docker, Fabric8
+* Provide *new* features {icon-arrow-right}
+** Docker Images *Registry* & *Certification*
+** *SSO* - Authentication Server
+** *Api* for Management, Client Command Line
+** Build *S2I*
+a|
+[#block,left="450px",top="100px",width="700px"]
+image:rht-atomic-enterprise-openshift.png[width="100%"]
+|===
+
+// ************** openshift ************
+[#os3-architecture]
+== Architecture
+
+[#block,width="800px",top="120px"]
+image:ose-v3.png[width="95%",height="95%"]
+
+// ************** devops ************
+[#cd-tools2]
+== CDelivery Technology
+
+[#block,top="300px",left="10px"]
+image:new-cd-pipeline.png[width="70%"]
+
+[.noredheader]
+|===
+a|* Manage *setup/build/deploy* images
+* *Tooling* Mngt CD Pipeline & Apps
+* *Stage* environments
+* Provision Worflow *Pipeline*
+a|
+[#block, top=25px, left=500px]
+image:fabric8-logo.png[height="15%"]
+|===
+
+// ************** fabric v2 ************
+[#fabric8-plugin]
+== http://fabric8.io/gitbook/mavenPlugin.html[Fabric8 Maven Plugin]
+
+* docker:build {icon-arrow-right} Build image of app
+
+* docker:push {icon-arrow-right} Push image
+
+{space}
+
+* fabric8:json {icon-arrow-right} generates Kube MetaData App
+
+* fabric8:apply {icon-arrow-right} deploy on Openshift
+* fabric8:recreate {icon-arrow-right} redeploy on Openshift
+* fabric8:devops {icon-arrow-right} automate pipeline creation
+
+{space}
+
+* and more to create env, delete pods, create routes
+
+// ************** fabric8 ************
+[#fabric8-desc]
+== {blank-space}
+
+[#block,width="800px",top="0px"]
+image:fabric8-diagram1.png[width="80%",height="80%"]
+
+// ************** fabric v2 ************
+[#fabric8-cdci]
+== {blank-space}
+
+[#block,width="800px",top="0px"]
+image:fabric8-cdci.png[width="80%"]
+
+// ************** transition page ************
+[#transition7, data-background-color="white"]
+== {blank-space}
+
+[#cover-h1,width="600px",left="0px",top="200px"]
+*Demo*
+
+[#block,left="-20px",top="550px"]
+image:softshake-2015.png[width="500px"]
+
+// *********************************
+[#questions]
+== Questions
+
+[.noredheader,cols="65,45"]
+|===
+.2+|image:questions.png[width="95%",height="95%"]
+a|* Twitter : *{speaker-twitter}*
+|===
+
+* More info {icon-arrow-right}
+  - http://fabric8.io/
+  - http://fabric8.io/guide/cdelivery.html

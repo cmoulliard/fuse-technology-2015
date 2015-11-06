@@ -1,12 +1,12 @@
 source: slideshow
-destination: slideshow/generated # or . or ~/Hyla or generated_content
+destination: slideshow/generated
 backend: revealjs-redhat
-rendering: adoc2html           # Render asciidoc, asciidoctor files to HTML using backend HTML5
+rendering: adoc2html     
 
 mode: 'development' # Default value = production. Available : 'production', 'development"
-tracer: 'false' #Default value is false. Can be true or false
+tracer: 'false'
 level: 'INFO' # Values available : DEBUG, INFO, WARN, ERROR, FATAL. Default for production : 'WARN' and development 'DEBUG'
-dirname: /Users/chmoulli/log # Directory where the log files should be saved. If not specified hyla will create a directory under your home directory
+dirname: /Users/chmoulli/log #If not specified hyla will create a directory under your home directory
 logname: hyla.log # Name of the log file
 
 attributes:
@@ -21,11 +21,14 @@ attributes:
 
   # Code source highlight
   source-highlighter: highlightjs # prettify, pygments, coderay, highlightjs
-  highlightjs-theme: sunburst # highlightjs-theme: solarized_dark , github, foundation, zenburn, dark, solarized_dark, solarized_light, foundation, zenburn, docco, atelier-heath.light, tomorrow-night-blue, tomorrow-night-eighties
+  highlightjs-theme: zenburn # highlightjs-theme: solarized_dark , github, foundation, zenburn, dark, solarized_light, zenburn, docco, atelier-heath.light, tomorrow-night-blue, tomorrow-night-eighties
 
   # Font Icons - http://fortawesome.github.io/Font-Awesome/icons/
   icon-arrow-left: <i class="fa fa-arrow-left"></i>
   icon-arrow-right: <i class="fa fa-arrow-right"></i>
+  icon-arrow-down: <i class="fa fa-arrow-down" style="color:rgb(167,0,0)"></i>
+  icon-arrow-downcenter: <i class="fa fa-arrow-down" style="color:rgb(167,0,0);text-align:center;"></i>
+  icon-arrow-up: <i class="fa fa-arrow-up" style="color:rgb(167,0,0)"></i>
   icon-plus: <i class="fa fa-plus"></i>
   icon-exclamation-mark: <i class="fa fa-exclamation"></i>
   icon-exclamation-triangle: <i class="fa fa-triangle fa-4x"></i>
@@ -51,13 +54,14 @@ attributes:
   iconfont-name: font-awesome-4.3.0
 
   revealjsdir: "revealjs-redhat"
-  revealjs_theme: conference # Revealjs RedHat css theme
+  revealjs_theme: conference-redhat # Revealjs RedHat css theme
   revealjs_transition: none # default/cube/page/concave/zoom/linear/fade/none
-  revealjs_display_slidenumber: true  # Comment/Uncomment the line but don't replace true by false
-  revealjs_history: true # Comment/Uncomment the line but don't replace true by false
-  revealjs_cover_image: /Users/chmoulli/.rbenv/versions/1.9.3-p484/lib/ruby/gems/1.9.1/gems/hyla-1.0.8.pre.1/lib/resources/assets/revealjs-redhat/image/1156515-Logo_RH_RGB_Reverse.png
-
-  revealjs_scrollbar: true # Support browser's scrollbar
+  revealjs_display_slidenumber: true
+  revealjs_history: true
+  revealjs_cover_image: /Users/chmoulli/.rbenv/versions/1.9.3-p484/lib/ruby/gems/1.9.1/gems/hyla-1.0.8/lib/resources/assets/revealjs-redhat/image/1156515-Logo_RH_RGB_Reverse.png
+  revealjs_partners_logo: redhat_EMEA_partnerconf_logo_2015.png
+  revealjs_scrollbar: true
   revealjs_footer_copyright: Copyright ©2015 Red Hat, Inc.
-  revealjs_slideshow: false # Attribute that we use to include/remove title cover for revealjs
-#
+  revealjs_slideshow: false
+  revealjs_conference_logo: redhat_EMEA_partnerconf_logo_2015.png
+# 

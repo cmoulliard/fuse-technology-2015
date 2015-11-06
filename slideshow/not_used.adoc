@@ -1,0 +1,118 @@
+// ************** fabric8 ************
+
+== Fabric8 v1
+
+[.noredheader,cols="45,55"]
+|===
+a| * http://fabric8.io[OpenSource Project]
+* Provides centralized configuration
+* Versioning (upgrade/rollback)
+* Visualization of your middleware |
+|===
+
+[#block,width="100px",top="100px",left="500px"]
+image:fabric8-diagram.png[width="85%"]
+
+// ************** fabric8 ************
+
+== Fabric8 v1
+
+* Simplification (deployment & container provisioning)
+
+[#block,width="100px",top="150px",left="0px"]
+image:fabric8-diagram1.png[width="95%"]
+
+// ************** fabric8 ************
+
+== Zookeeper & Agent
+
+image::fabric-1.png[width="40%"]
+
+image::fabric-2.png[width="40%"]
+
+// ************** fabric8 ************
+
+== Fabric8 v1
+
+* *Service discovery* & smart *load balancing*
+* Provides cluster capabilities, coordination
+
+image::fabric-camel.png[width="75%"]
+
+// ************** fabric v2 ************
+
+== Fabric8 v2
+
+[.newline]
+* Extend GOALS of FabricV1
+
+[.newline]
+* Provision *Other Java Containers* : JBoss EAP, Tomcat, ...
+
+[.newline]
+* Rely on a *New API* & *Architecture Design*
+
+[.newline]
+* Decouple Devs & Ops
+
+// ************** openshift ************
+
+== Scale IT Like a Factory with PaaS
+
+[#block,width="800px",top="100px"]
+image:openshift-paas.png[width="75%"]
+
+// ************** fabric v2 ************
+
+== Support Continuous Delivery
+
+[#block,width="800px",top="70px"]
+image:cd_process_diagram.png[width="95%",height="95%"]
+
+// ************** devops ************
+
+== Sample Flow
+
+[#block,width="800px",top="100px"]
+image:cd-sample-flow.png[width="95%",height="95%"]
+
+// ************** cost of change ********
+== {blank-space}
+
+[#block, width="800px",top="0px"]
+image:cat.png[width="95%"]
+
+// ************** cost of change ********
+== {blank-space}
+
+[#block,width="800px",top="0px"]
+image:believe.png[width="85%",height="85%"]
+
+// ************ fabric v2 *************
+== Modern HTML5 Architecture
+
+[.newline]
+* Hawtio *=* A combination of the most *powerful web* technologies
+
+* image:html5.jpeg[100,100] {icon-plus} image:javascript.jpeg[100,100] {icon-plus} image:AngularJS-small.png[] {icon-plus} image:rest-api.png[100,100] {icon-plus} image:jolokia.png[200,200]
+
+[.newline]
+** Front end : HTML5 with *AngularJS* & **JSON / REST**
+** Backend : Java Servlet & **Jolokia** JMX gateway
+
+// ************ fabric v2 *************
+== Communication ...
+
+** *Web* client communicates to Jolokia *agent* over HTTP(S)
+** Send Messages represented in *JSON* Format to Jolokia REST Servlet
+** Jolokia *translates* the request/response & map the JSON payload with JMX Calls
+
+[#block,width="800px",top="300px"]
+image:hawtio-sequence.png[]
+
+// ************** docker ************
+
+== Process vs OS
+
+[#block,width="800px",top="100px"]
+image:docker_vm_diagram.jpg[width="95%",height="95%"]
