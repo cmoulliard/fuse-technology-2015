@@ -3,6 +3,15 @@
     hyla generate -c slideshow/conference-redhat.yaml
     hyla generate -c slideshow/conference-softshake-2015.yaml
     hyla generate -c demo/conference-redhat.yaml
+    
+# Change Style
+    
+* Copy sass folder out of revealjs-redhat directory to the generated folder
+* Edit the conference-scss file and generate the css as such
+
+```
+compass compile --fonts-dir 'fonts' --css-dir 'slideshow/generated/revealjs-redhat/lib/css' --sass-dir 'slideshow/generated/sass' -e development --output-style=expanded --force
+```    
 
 # Move content to Github io
 

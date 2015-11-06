@@ -160,6 +160,183 @@ image:camel/pipeline.png[]
 image:camel/pipeline2.png[]
 
 // ************** Camel ************
+[#convert-type]
+== Convert Type
+
+[.noredheader,cols="65,35"]
+|===
+| .2+|image:camel/type-converter.png[]
+a|* **Type Converter** Strategy
+* Allow to **convert** the body payloads from one type to another
+* To and From these types
+** File
+** String
+** byte[] and ByteBuffer
+** InputStream and OutputStream
+** Reader and Writer|
+|===
+
+// ************** Camel ************
+[#camel-convert]
+== Data Format
+
+* **Data Transformation** for complex use case
+
+[source, java]
+----
+package my.cool.demo;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+import org.apache.camel.Exchange;
+
+public interface DataFormat {
+
+    void marshal(Exchange exchange, Object graph, OutputStream stream) throws Exception;
+
+    Object unmarshal(Exchange exchange, InputStream stream) throws Exception;
+}
+----
+
+* **Marshalling** : Object {icon-arrow-right} XML (JAXB)
+* **Unmarshalling** : XML {icon-arrow-right} Object (JAXB)
+
+// ************** Camel ************
+[#camel-data-format]
+== Data Format supported
+
+* http://camel.apache.org/dataformat.html[> 20 Data Format]
+
+image::camel/dataformat-2.png[]
+
+// ************** Camel ************
+[#components]
+== http://camel.apache.org/components.html[Components]
+
+image::camel/components.png[width="85%"]
+
+// ************** Camel ************
+[#camel-ff]
+== Fire / Forget pattern
+
+image::camel/inonly.png[width="65%"]
+
+// ************** Camel ************
+[#camel-request-reply]
+== Request / Reply pattern
+
+image::camel/inout.png[width="75%"]
+
+// ************** Camel ************
+[#camel-howto1]
+== How To
+
+**Pattern**
+
+image::eip/cbr.png[]
+
+*Result*
+
+[source,java]
+----
+from("activemq:queue:quotes"")
+   .choice()
+       .when().xpath("/quotes/product = 'widget'")
+           .to("direct:b")
+       .when().xpath("/quotes/product = 'gadget'")
+           .to("direct:c");
+----
+
+// ************** Camel ************
+[#camel-howto2]
+== How To
+
+image::eip/filter1.png[]
+
+// ************** Camel ************
+[#camel-howto3]
+== How To
+
+image::eip/filter2.png[]
+
+// ************** Camel ************
+[#camel-howto4]
+== How To
+
+image::eip/filter3.png[]
+
+// ************** Camel ************
+[#camel-howto5]
+== How To
+
+image::eip/filter4.png[]
+
+// ************** Camel ************
+[#camel-howto6]
+== How To
+
+[source,java,style="font-size: 42px;"]
+----
+public void configure() throws Exception {
+   Endpoint A = endpoint("activemq:queue:all");
+   Endpoint B = endpoint("activemq:widget");
+   Predicate isWidget = xpath("/quote/product = 'widget'");
+   
+   from(A).filter(isWidget).toB);
+}
+----
+
+// ************** Camel ************
+[#camel-howto7]
+== Java DSL
+
+* Fluent API
+
+[source,java]
+----
+import org.apache.camel.builder.RouterBuilder;
+
+public class FilterRoute extends RouteBuilder {
+  public void configure() throws Exception {
+    Endpoint A = endpoint("activemq:queue:all");
+    Endpoint B = endpoint("activemq:widget");
+    Predicate isWidget = xpath("/quote/product = 'widget'");
+
+    from(A).filter(isWidget).to(B);
+  }
+}
+----
+
+// ************** Camel ************
+[#camel-howto8]
+== XML DSL
+
+* Spring, Blueprint
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+    
+   <bean id="quotesService" class="my.cool.demo.camel.QuotesService"/>"
+
+    <camelContext  xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <from uri="activemq:queue:all"/>
+            <filter>
+                <xpath>"/quote/product/ = 'widget"</xpath>
+                <bean id="quotesService" method="widget"/>
+            </filter>
+        </route>
+    </camelContext>    
+----
+
+// ************** Camel ************
 [#camel-context]
 == Container
 
@@ -192,236 +369,6 @@ a| * Cross communication not allowed between context |
 image:camel/camel-features3.png[]
 
 // ************** Camel ************
-[#convert]
-== Convert
-
-[.noredheader,cols="65,35"]
-|===
-| .2+|image:camel/type-converter.png[]
-a|* **Type Converter** Strategy
-* Allow to **convert** the body payloads from one type to another
-* To and From these types
-** File
-** String
-** byte[] and ByteBuffer
-** InputStream and OutputStream
-** Reader and Writer|
-|===
-
-// ************** Camel ************
-[#camel-ff]
-== Fire / Forget pattern
-
-image::camel/inonly.png[width="65%"]
-
-// ************** Camel ************
-[#camel-request-reply]
-== Request / Reply pattern
-
-image::camel/inout.png[width="75%"]
-
-// ************** Camel ************
-[#camel-convert]
-== Convert
-
-* **Data Transformation** for complex use case
-
-[source, java]
-----
-package my.cool.demo;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-import org.apache.camel.Exchange;
-
-public interface DataFormat {
-
-    void marshal(Exchange exchange, Object graph, OutputStream stream) throws Exception;
-
-    Object unmarshal(Exchange exchange, InputStream stream) throws Exception;
-}
-----
-
-* **Marshalling** : Object {icon-arrow-right} XML (JAXB)
-* **Unmarshalling** : XML {icon-arrow-right} Object (JAXB)
-
-// ************** Camel ************
-[#camel-data-format]
-== Data Format supported
-
-* http://camel.apache.org/dataformat.html[> 20 Data Format]
-
-image::camel/dataformat-2.png[]
-
-// ************** Camel ************
-[#camel-howto1]
-== how to 1
-
-image::eip/cbr.png[]
-
-[source,java]
-----
-from(""activemq:queue:quotes"")
-   .choice()
-       .when().xpath("/quotes/product = 'widget'")
-           .to("direct:b")
-       .when().xpath("/quotes/product = 'gadget'")
-           .to("direct:c");
-----
-
-// ************** Camel ************
-[#camel-howto2]
-== how to 2
-
-image::eip/filter1.png[]
-
-// ************** Camel ************
-[#camel-howto3]
-== how to 3
-
-image::eip/filter2.png[]
-
-// ************** Camel ************
-[#camel-howto4]
-== how to 4
-
-image::eip/filter3.png[]
-
-// ************** Camel ************
-[#camel-howto5]
-== how to 5
-
-image::eip/filter4.png[]
-
-// ************** Camel ************
-[#camel-howto6]
-== how to 6
-
-[source,java]
-----
-public void configure() throws Exception {
-   Endpoint A = endpoint("activemq:queue:all");
-   Endpoint B = endpoint("activemq:widget");
-   Predicate isWidget = xpath("/quote/product = 'widget'");
-   
-   from(A).filter(isWidget).toB);
-}
-----
-
-// ************** Camel ************
-[#camel-howto7]
-== how to 7
-
-[source,java]
-----
-import org.apache.camel.builder.RouterBuilder;
-
-public class FilterRoute extends RouteBuilder {
-  public void configure() throws Exception {
-    Endpoint A = endpoint("activemq:queue:all");
-    Endpoint B = endpoint("activemq:widget");
-    Predicate isWidget = xpath("/quote/product = 'widget'");
-   
-    from(A).filter(isWidget).to(B);
-  }
-}
-----
-
-// ************** Camel ************
-[#camel-howto8]
-== how to 8
-
-[source,java]
-----
-import org.apache.camel.builder.RouterBuilder;
-
-public class FilterRoute extends RouteBuilder {
-  public void configure() throws Exception {
-   
-    from("activemq:queue:all")
-      .filter().xpath("/quote/product = 'widget'");
-      .to("activemq:widget");
-  }
-}
-----
-
-// ************** Camel ************
-[#camel-howto9]
-== how to 9
-
-[source,xml]
-----
-<camelContext>
-  <route>
-    <from uri="activemq:queue:all"/>
-      <filter>
-        <xpath>/quote/product = 'widget'</xpath>
-        <to uri="activemq:queue:widget"/>
-      </filter>
-    </route>
-</camelContext>
-----
-
-// ************** Camel ************
-[#camel-java-dsl]
-== Java DSL
-
-* Fluent API
-
-[source,java]
-----
-package my.cool.demo;
-
-import org.apache.camel.builder.RouteBuilder;
-
-public class ExampleRouteBuilder extends RouteBuilder {
-    @Override
-    public void configure() throws Exception {
-
-        from("amq:queue:quotes")
-           .filter().xpath("/quote/product/ = 'widget")
-                .bean("QuotesService", "widget")
-           .filter().xpath("/quote/product/ = 'gadget")
-                .bean("QuotesService","gadget");
-    }
-}
-
-----
-
-// ************** Camel ************
-[#camel-xml-dsl]
-== XML DSL
-
-* Alternative : Spring, Blueprint DSL
-
-[source,xml]
-----
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
-    ">
-    <bean id="quotesService" class="my.cool.demo.camel.QuotesService"/>"
-
-    <camelContext  xmlns="http://camel.apache.org/schema/spring">
-        <route>
-            <from uri="amq:queue:quotes"/>
-            <filter>
-                <xpath>"/quote/product/ = 'widget"</xpath>
-            </filter>
-                <bean id="quotesService" method="widget"/>
-            <filter>
-                <xpath>"/quote/product/ = 'gadget"</xpath>
-            </filter>
-            <bean id="quotesService" method="gadget"/>
-        </route>
-    </camelContext>
-</beans>
-----
-
-// ************** Camel ************
 [#camel-features]
 == Facts
 
@@ -434,12 +381,6 @@ public class ExampleRouteBuilder extends RouteBuilder {
 * *Error* & *Exception* handling
 * Policy driven
 * Container *Agnostic*
-
-// ************** Camel ************
-[#components]
-== http://camel.apache.org/components.html[Components]
-
-image::camel/components.png[width="85%"]
 
 // ************** Karaf ************
 [#apache-karaf]
@@ -942,7 +883,7 @@ image:broker-architecture.png[]
 - Messages stored until read or expired
 - Messages can be persisted, are read only once
 
-image:point-to-point.png[]
+image:point-to-point.png[width="800px"]
 
 // ************** A-MQ ************
 [#amq-loadbalance]
@@ -951,7 +892,7 @@ image:point-to-point.png[]
 * Workload can be distributed between connected clients 
 * Round-robin algorithm used 
 
-image:loadbalancing.png[]
+image:loadbalancing.png[width="800px"]
 
 // ************** A-MQ ************
 [#amq-pubsub]
@@ -961,7 +902,7 @@ image:loadbalancing.png[]
 - Broker sends message to all currently connected subscribers
 - Messages are consumed _x_ times (1-to-many)
 
-image:publish-subscribe.png[]
+image:publish-subscribe.png[width="800px"]
 
 // ************** A-MQ ************
 [#amq-dursub]
@@ -978,13 +919,12 @@ image::https://docs.oracle.com/cd/E19798-01/821-1841/images/jms-durableSubscribe
 [#amq-reqreply]
 == Request/Reply
 
-* Async request/reply pattern
 * Producer sets 2 properties to send message
 ** `JMSReplyTo`: Destination for response message
 ** `JMSCorrelationID`: Unique ID matches/correlates messages (request/response)
 * Consumer replies to `JMSReplyTo` destination using `JMSCorrelationID` in message
 
-image:request-reply.png[]
+image:request-reply.png[width="800px"]
 
 // ************** A-MQ ************
 [#amq-network-of-broker1]
