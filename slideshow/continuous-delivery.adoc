@@ -1,13 +1,13 @@
 :footer_copyright: Copyright ©2015 Red Hat, Inc.
 :imagesdir: images/
-:speaker: Charles Moulliard
+:speaker: Charles Moulliard (@cmoulliard)
 :speaker-title: Pr. Solution Architect, Fuse Expert, Apache Committer
 :speaker-email: cmoulliard@redhat.com
 :speaker-blog: http://cmoulliard.github.io
 :speaker-twitter: http://twitter.com/cmoulliard[@cmoulliard]
 :talk-speaker: {speaker}
 :talk-name: Continuous Delivery with JBoss Fuse & Openshift
-:talk-date: 9th of November 2015
+:talk-date:
 
 [#cover,data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
 == {blank-space}
