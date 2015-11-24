@@ -406,9 +406,9 @@ To save your time, use the snapshot plugin (https://github.com/dergachev/vagrant
 Steps :
 
 * Create a new VM -> `vagrant up`
-* Use gofabric8 to install cd-pipeline & social --> `gofabric8 pull cd-pipeline`, `gofabric8 pull cd-pipeline`, `gofabric8 pull social`
+* Use gofabric8 to install cd-pipeline & social --> `gofabric8 pull cd-pipeline`, `gofabric8 pull social`
 * Execute `run` cd-pipeline and `run` chat-letschat from the Fabric8 console to install the required pods. 
-* Take a snapshot -> `vagrant snapshot take default cleanstart-2.2.67`
-* To restore -> `vagrant snapshot go default cleanstart-2.2.67`
+* Take a snapshot -> `vagrant snapshot take default fabric8-2.2.67`
+* To restore -> `vagrant snapshot go default fabric8-2.2.67`
 
 
