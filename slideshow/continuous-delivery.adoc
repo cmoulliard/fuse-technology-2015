@@ -6,7 +6,7 @@
 :speaker-blog: http://cmoulliard.github.io
 :speaker-twitter: http://twitter.com/cmoulliard[@cmoulliard]
 :talk-speaker: {speaker}
-:talk-name: Continuous Delivery with JBoss Fuse & Openshift
+:talk-name: DevOps with xPaas & Openshift
 :talk-date:
 
 [#cover,data-background-image="revealjs-redhat/image/1156524-bg_redhat.png" data-background-color="#cc0000"]
@@ -229,21 +229,20 @@ a|* *Objective* {icon-arrow-right} *Continuous Integration* strategy
 
 // ************** devops ************
 [#cd1]
-== Impact
+== Involvement
 
 [#block,top="0px",left="790px"]
 image:{revealjs_conference_logo}[width="80%"]
 
 [.noredheader, cols="40,60"]
 |===
-a|* *Bottlenecks ?*
-* Involves *Dev* & *Ops* to be *successful*
+a|* *Dev* & *Ops* to be *successful*
 * Every *build* {icon-arrow-right} "release candidate" | image:collaborate.jpeg[]
 |===
 
 // ************** devops ************
 [#cd-automate]
-== Automate Pipeline !
+== Deliverables
 
 [#block,top="0px",left="790px"]
 image:{revealjs_conference_logo}[width="80%"]
@@ -251,16 +250,18 @@ image:{revealjs_conference_logo}[width="80%"]
 [.noredheader, cols="40,60"]
 |===
 a|* Developer
+** Requirements
+** Code Source
 ** *Unit* test
 ** *Integration* test
-** *Build*
-** *Deployment*
+** *Build Automation*
+** *Procedures*
 ** Doc / Release | image:devops2.jpeg[]
 |===
 
 // ************** devops ************
 [#cd-automate1]
-== Automate Pipeline
+== Deliverables
 
 [#block,top="0px",left="790px"]
 image:{revealjs_conference_logo}[width="80%"]
@@ -270,7 +271,8 @@ image:{revealjs_conference_logo}[width="80%"]
 a|* Operations
 ** Setup *(V)Machine*
 ** *Provisioning* software
-** *Deploy* procedures in QA/UAT/PROD | image:devops1.jpeg[]
+** Procedures
+** *Deploy* in QA/UAT/PROD | image:devops1.jpeg[]
 |===
 
 // ************** transition page ************
