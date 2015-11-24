@@ -1,6 +1,6 @@
 :footer_copyright: Copyright ©2015 Red Hat, Inc.
 :imagesdir: images/
-:speaker: Charles Moulliard
+:speaker: Charles Moulliard (@cmoulliard)
 :speaker-title: Pr. Solution Architect, Fuse Expert, Apache Committer
 :speaker-email: cmoulliard@redhat.com
 :speaker-blog: http://cmoulliard.github.io
@@ -22,8 +22,7 @@ image:redhat-emea-partner-2015.png[width="95%"]
 {talk-name}
 
 [#cover-h2,width="800px",left="0px",top="450px"]
-{speaker} +
-{talk-date}
+{speaker}
 
 // ************** who - charles ********
 [#who]
@@ -135,33 +134,33 @@ image:{revealjs_conference_logo}[width="80%"]
 a|
 * Service(s) Review (consumer/producer)
 
-{space}{space}
+{space}
 
 * Code, Documentation
 
-{space}{space}
+{space}
 
 * *Update* Testing coverage (Unit/Int.)
 
-{space}{space}
+{space}
 
 * Prepare *new* Release(s)
 
-{space}{space}
+{space}
 
 * *Flow* Procedures | image:expensive.jpeg[]
 |===
 
-[#block,width="200px",left="250px",top="150px"]
+[#block,width="200px",left="250px",top="120px"]
 {icon-arrow-down}
 
-[#block,width="200px",left="250px",top="220px"]
+[#block,width="200px",left="250px",top="200px"]
 {icon-arrow-down}
 
-[#block,width="200px",left="250px",top="300px"]
+[#block,width="200px",left="250px",top="280px"]
 {icon-arrow-down}
 
-[#block,width="200px",left="250px",top="380px"]
+[#block,width="200px",left="250px",top="360px"]
 {icon-arrow-down}
 // ************** slide ********
 [#impact-measurement]
