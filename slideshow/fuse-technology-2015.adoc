@@ -963,12 +963,16 @@ image:alltogether.png[width="900"]
 == JBoss Fuse in action
 
 * *DEMO*
-** Design REST Service service using *JBDS*
-** Deploy on *JBoss Fuse* as a *profile*
+** Design REST Service using *Camel*
+** Deploy on *JBoss Fuse* using a *profile*
 ** Create container & expose REST Service using *Fabric*
 ** Define *Security Policy* for the endpoint {icon-arrow-right}
 *** *Authenticate* the user (*BASIC* - static realm)
 *** *Authorize* using *Oauth2*
+
+Rest DSL in Action : https://github.com/FuseByExample/rest-dsl-in-action
+
+Camel & Mobile : https://github.com/cmoulliard/feedhenry-camel
 
 // *********************************
 [#questions]
